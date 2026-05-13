@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Kadın Hub Sayfa Stratejisi · Özdilek × Inbound</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --coral: #FF7B52;
+  --coral-tint: #FFE3D8;
+  --coral-deep: #E85F36;
+  --teal: #10332F;
+  --teal-soft: #1A4238;
+  --mint: #E8F5E9;
+  --white: #FFFFFF;
+  --off-white: #FAF8F5;
+  --ink-2: #4A4A4A;
+  --ink-3: #8A8A8A;
+  --line: #E0E0E0;
+  --line-soft: #F0EDE8;
+  --red: #D32F2F; --red-wash: #FFCDD2;
+  --green: #2E7D32; --green-wash: #C8E6C9;
+  --gold: #F5A623;
+  --font-display: 'Bricolage Grotesque', Calibri, system-ui, sans-serif;
+  --font-body: 'Outfit', Calibri, system-ui, sans-serif;
+  --shadow-card: 0 2px 8px rgba(16,51,47,.08);
+  --shadow-card-hover: 0 6px 20px rgba(16,51,47,.12);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #ECEDEA; color: var(--teal); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+
+.deck { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 40px 0; }
+
+/* Slide stage 1280×720 */
+.slide {
+  width: 1280px; height: 720px;
+  position: relative;
+  background: #fff;
+  color: var(--teal);
+  overflow: hidden;
+  box-shadow: 0 6px 30px rgba(16,51,47,.18);
+  border-radius: 4px;
+}
+.slide.coral { background: var(--coral); color: #fff; }
+.slide.dark  { background: var(--teal); color: #fff; }
+
+/* Top breadcrumb */
+.bc { position: absolute; top: 28px; left: 48px; font-size: 12px; }
+.bc .section { font-family: var(--font-display); font-weight: 700; color: var(--coral); letter-spacing: 0.02em; }
+.bc .sep { color: var(--coral); margin: 0 6px; opacity: .6; }
+.bc .title { color: var(--coral); opacity: .9; }
+
+/* Logo bottom-left */
+.logo-bl { position: absolute; left: 44px; bottom: 32px; width: 36px; height: 36px; background: url('inbound-o-teal.png') no-repeat center/contain; }
+.slide.coral .logo-bl, .slide.dark .logo-bl { background-image: url('inbound-o-white.png'); }
+
+/* Page numbers */
+.pg { position: absolute; right: 44px; bottom: 30px; font-family: var(--font-display); font-weight: 700; font-size: 11px; color: var(--teal); opacity: .5; letter-spacing: 0.1em; }
+.slide.coral .pg, .slide.dark .pg { color: #fff; opacity: .7; }
+
+/* Source pill */
+.source-pill { position: absolute; left: 100px; bottom: 36px; background: var(--coral); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 11px; padding: 6px 12px; border-radius: 8px; letter-spacing: 0.02em; }
+
+/* Coral highlight */
+.hl { background: linear-gradient(to top, var(--coral) 28%, transparent 28%); box-decoration-break: clone; -webkit-box-decoration-break: clone; padding: 0 0.06em; }
+
+/* Headings */
+h1, h2 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; margin: 0; }
+h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; margin: 0; }
+p { font-family: var(--font-body); line-height: 1.55; margin: 0; }
+
+/* Accent line */
+.accent-line { width: 60px; height: 3.5px; background: var(--coral); border-radius: 999px; display: block; }
+.slide.coral .accent-line, .slide.dark .accent-line { background: #fff; }
+
+/* Insights */
+.insight-list { list-style: none; padding: 0; margin: 0; }
+.insight-list li { position: relative; padding-left: 22px; margin-bottom: 12px; font-size: 14px; line-height: 1.55; }
+.insight-list li::before { content: "➔"; position: absolute; left: 0; top: 0; color: var(--teal); }
+.slide.dark .insight-list li::before { color: #fff; }
+.insight-list b { font-family: var(--font-display); font-weight: 700; }
+.gain { color: var(--green); font-family: var(--font-display); font-weight: 700; }
+.loss { color: var(--red); font-family: var(--font-display); font-weight: 700; }
+.cor  { color: var(--coral); font-family: var(--font-display); font-weight: 700; }
+
+/* Gridlines bg */
+.gridlines::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(to right, transparent calc(20% - .5px), var(--line-soft) calc(20% - .5px), var(--line-soft) 20%, transparent 20%),
+    linear-gradient(to right, transparent calc(40% - .5px), var(--line-soft) calc(40% - .5px), var(--line-soft) 40%, transparent 40%),
+    linear-gradient(to right, transparent calc(60% - .5px), var(--line-soft) calc(60% - .5px), var(--line-soft) 60%, transparent 60%),
+    linear-gradient(to right, transparent calc(80% - .5px), var(--line-soft) calc(80% - .5px), var(--line-soft) 80%, transparent 80%);
+  opacity: .6;
+}
+.slide > * { position: relative; z-index: 1; }
+
+/* Cards */
+.card { background: #fff; border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow-card); position: relative; }
+.card .num { position: absolute; top: 14px; right: 18px; font-family: var(--font-display); font-weight: 700; font-size: 44px; color: var(--coral); opacity: .15; }
+.card .ic { width: 36px; height: 36px; border-radius: 999px; background: var(--coral); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 16px; }
+.card h4 { font-family: var(--font-display); font-weight: 700; font-size: 18px; margin: 12px 0 4px; line-height: 1.2; }
+.card p { font-size: 13px; color: var(--ink-2); }
+
+/* KPI tile */
+.kpi { border-radius: 16px; padding: 26px 22px; text-align: center; color: #fff; }
+.kpi.dark { background: var(--teal); }
+.kpi.coral { background: var(--coral); }
+.kpi .v { font-family: var(--font-display); font-weight: 700; font-size: 56px; line-height: 1; letter-spacing: -0.02em; }
+.kpi .v sup { font-size: 26px; vertical-align: super; }
+.kpi .l { font-family: var(--font-body); font-size: 11px; opacity: .9; letter-spacing: 0.06em; margin-top: 10px; text-transform: uppercase; }
+
+/* Table */
+.tbl { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(16,51,47,.06); font-family: var(--font-body); font-size: 12.5px; }
+.tbl thead tr { background: var(--teal); color: #fff; }
+.tbl th { padding: 11px 12px; text-align: center; font-family: var(--font-display); font-weight: 700; font-size: 11.5px; letter-spacing: 0.04em; }
+.tbl th:first-child { text-align: left; }
+.tbl td { padding: 9px 12px; border-top: 1px solid var(--line); text-align: center; font-variant-numeric: tabular-nums; }
+.tbl td:first-child { text-align: left; font-weight: 500; }
+.tbl .g { background: var(--green-wash); color: var(--green); font-family: var(--font-display); font-weight: 700; }
+.tbl .r { background: var(--red-wash); color: var(--red); font-family: var(--font-display); font-weight: 700; }
+.tbl .y { background: #FFF3CD; color: #856404; font-family: var(--font-display); font-weight: 600; }
+.tbl .yes { color: var(--green); font-weight: 700; }
+.tbl .no  { color: var(--red); font-weight: 700; }
+.tbl .par { color: var(--gold); font-weight: 700; }
+
+/* Print: each slide on its own page */
+@media print {
+  body { background: #fff; }
+  .deck { gap: 0; padding: 0; }
+  .slide { box-shadow: none; border-radius: 0; page-break-after: always; }
+}
+
+/* Responsive: zoom out on smaller screens */
+@media (max-width: 1340px) {
+  .deck { transform-origin: top center; }
+}
+</style>
+</head>
+
+<body>
+<div class="deck">
+
+<!-- =============================================================
+     SLIDE 1 · COVER
+     ============================================================= -->
+<div class="slide coral" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+  <img src="inbound-big-o-white.png" alt="" style="position:absolute;right:-180px;top:-240px;height:1320px;opacity:.14;pointer-events:none;">
+  <img src="inbound-big-o-white.png" alt="" style="position:absolute;left:-360px;bottom:-360px;height:900px;opacity:.08;pointer-events:none;">
+  <div style="text-align:center;position:relative;max-width:920px;padding:0 60px;">
+    <div style="font-family:var(--font-display);font-weight:300;font-size:13px;letter-spacing:0.18em;color:#fff;opacity:.9;text-transform:uppercase;margin-bottom:20px;">Özdilek × Inbound · Strateji Sunumu</div>
+    <h1 style="font-size:82px;color:#fff;letter-spacing:-0.025em;">Kadın Hub<br>Sayfa Stratejisi</h1>
+    <p style="margin-top:24px;font-size:20px;color:#fff;opacity:.95;font-weight:300;line-height:1.5;">Rakip Analizi · Yapısal Öneri · Mockup · Roadmap</p>
+    <div class="accent-line" style="margin:30px auto 0;background:#fff;width:80px;"></div>
+  </div>
+  <img src="inbound-wordmark-white.png" alt="Inbound" style="position:absolute;bottom:52px;left:50%;transform:translateX(-50%);height:30px;">
+  <div style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--font-body);font-size:11px;color:#fff;opacity:.7;letter-spacing:0.1em;">MAYIS 2026</div>
+</div>
+
+<!-- =============================================================
+     SLIDE 2 · AGENDA
+     ============================================================= -->
+<div class="slide" style="display:grid;grid-template-columns:45% 55%;">
+  <div style="background:var(--coral);color:#fff;padding:64px 50px;display:flex;flex-direction:column;justify-content:center;position:relative;">
+    <div style="font-family:var(--font-display);font-weight:300;font-size:13px;letter-spacing:0.12em;opacity:.85;">SECTION TITLE</div>
+    <div style="font-family:var(--font-display);font-weight:300;font-size:60px;letter-spacing:-0.02em;line-height:1.05;margin-top:12px;">SUNUM<br>AKIŞI</div>
+    <p style="margin-top:32px;font-size:14px;line-height:1.6;opacity:.95;max-width:300px;">Hub sayfa stratejisi 5 bölümde değerlendirilmektedir. Süreç boyunca veri-temelli içgörüler ve rakip karşılaştırmaları temel alınmıştır.</p>
+    <img src="inbound-o-white.png" alt="" style="position:absolute;left:44px;bottom:40px;width:36px;height:36px;">
+  </div>
+  <div style="padding:70px 60px;display:flex;flex-direction:column;justify-content:space-between;">
+    <div><div style="font-family:var(--font-body);font-weight:300;font-size:18px;color:var(--teal);opacity:.6;">01</div><div style="font-family:var(--font-display);font-weight:700;font-size:24px;margin-top:2px;">Mevcut Durum &amp; Problem</div><p style="font-size:12.5px;color:var(--ink-2);margin-top:4px;">/kadin2 sayfası neden hub değil, mevcut SEO eksiklikleri</p></div>
+    <div><div style="font-family:var(--font-body);font-weight:300;font-size:18px;color:var(--teal);opacity:.6;">02</div><div style="font-family:var(--font-display);font-weight:700;font-size:24px;margin-top:2px;">Rakip Analizi</div><p style="font-size:12.5px;color:var(--ink-2);margin-top:4px;">Boyner · Amazon TR · Koton · Marks &amp; Spencer karşılaştırması</p></div>
+    <div><div style="font-family:var(--font-body);font-weight:300;font-size:18px;color:var(--teal);opacity:.6;">03</div><div style="font-family:var(--font-display);font-weight:700;font-size:24px;margin-top:2px;">Önerilen Hub Yapısı</div><p style="font-size:12.5px;color:var(--ink-2);margin-top:4px;">16 bölümlü hibrit yaklaşım, component breakdown</p></div>
+    <div><div style="font-family:var(--font-body);font-weight:300;font-size:18px;color:var(--teal);opacity:.6;">04</div><div style="font-family:var(--font-display);font-weight:700;font-size:24px;margin-top:2px;">Yeni Componentler &amp; Loyalty</div><p style="font-size:12.5px;color:var(--ink-2);margin-top:4px;">Tarzın Bi' Başka, Split Showcase, Club/App promosyonu</p></div>
+    <div><div style="font-family:var(--font-body);font-weight:300;font-size:18px;color:var(--teal);opacity:.6;">05</div><div style="font-family:var(--font-display);font-weight:700;font-size:24px;margin-top:2px;">SEO Etkisi &amp; Roadmap</div><p style="font-size:12.5px;color:var(--ink-2);margin-top:4px;">Beklenen kazançlar, implementasyon takvimi</p></div>
+  </div>
+</div>
+
+<!-- =============================================================
+     SLIDE 3 · SEPARATOR 01
+     ============================================================= -->
+<div class="slide dark" style="display:flex;align-items:center;justify-content:center;">
+  <div style="position:absolute;left:-50px;bottom:-100px;font-family:var(--font-display);font-weight:700;font-size:520px;color:var(--teal-soft);line-height:1;">01</div>
+  <div style="text-align:center;position:relative;">
+    <div class="accent-line" style="margin:0 auto 30px;"></div>
+    <h1 style="color:#fff;font-size:64px;letter-spacing:-0.02em;">Mevcut Durum</h1>
+    <p style="margin-top:16px;font-size:16px;color:#fff;opacity:.8;max-width:520px;">/kadin2 sayfasının hub potansiyeli ve eksiklikleri</p>
+    <div class="accent-line" style="margin:30px auto 0;"></div>
+  </div>
+</div>
+
+<!-- =============================================================
+     SLIDE 4 · MEVCUT DURUM ANALİZİ
+     ============================================================= -->
+<div class="slide gridlines">
+  <div class="bc"><span class="section">Mevcut Durum</span><span class="sep">|</span><span class="title">/kadin2 sayfa analizi</span></div>
+  <div style="padding:80px 56px 80px;display:grid;grid-template-columns:36% 1fr;gap:44px;height:100%;box-sizing:border-box;">
+    <div>
+      <h1 style="font-size:42px;">Hub <span class="hl">değil</span>, doğrudan PLP</h1>
+      <p style="margin-top:18px;font-size:14px;color:var(--ink-2);">www.ozdilekteyim.com/magaza/kadin2 sayfası bir kategori hub'ı yerine doğrudan ürün listeleme sayfası olarak çalışmaktadır. Kullanıcı keşif deneyimi ve SEO katmanları eksik durumdadır.</p>
+      <p style="margin-top:14px;font-size:13px;color:var(--ink-2);">14.800 ürün · 411 sayfa · 54 facet</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px;">
+      <div class="card"><div class="ic">!</div><h4>H1: "Kadın"</h4><p>Tek kelime, alıntı içinde. Long-tail SEO sinyali vermemektedir.</p><div class="num">01</div></div>
+      <div class="card"><div class="ic">↺</div><h4>Breadcrumb duplicate</h4><p>"Ana Sayfa &gt; Kadın &gt; Kadın" — son seviye tekrarlanmaktadır.</p><div class="num">02</div></div>
+      <div class="card"><div class="ic">∅</div><h4>SEO içerik yok</h4><p>Açıklayıcı paragraf, alt başlık, ilgili kategori linki bulunmamaktadır.</p><div class="num">03</div></div>
+      <div class="card"><div class="ic">?</div><h4>FAQ ve loyalty yok</h4><p>FAQPage schema'sı eksik. Üyelik / app yönlendirmesi bulunmamaktadır.</p><div class="num">04</div></div>
+    </div>
+  </div>
+  <ul class="insight-list" style="padding:0 56px;margin-top:-50px;column-count:2;column-gap:40px;">
+    <li>Mevcut /kadin2 sayfasında <b class="cor">3 schema</b> tanımlı (BreadcrumbList + ItemList + WebPage) — rakiplerin çoğunda hiç JSON-LD yoktur.</li>
+    <li>H2 başlıklarının tamamı <b class="loss">filtre etiketi</b> (Cinsiyet, Markalar, Bedenler) olup semantic SEO için elverişsizdir.</li>
+  </ul>
+  <div class="logo-bl"></div>
+  <div class="source-pill">Source: Özdilekteyim canlı tarama · 13.05.2026</div>
+  <div class="pg">04 / 14</div>
+</div>
+
+<!-- =============================================================
+     SLIDE 5 · SEPARATOR 02
+     ============================================================= -->
+<div class="slide dark" style="display:flex;align-items:center;justify-content:center;">
+  <div style="position:absolute;left:-50px;bottom:-100px;font-family:var(--font-display);font-weight:700;font-size:520px;color:var(--teal-soft);line-height:1;">02</div>
+  <div style="text-align:center;position:relative;">
+    <div class="accent-line" style="margin:0 auto 30px;"></div>
+    <h1 style="color:#fff;font-size:64px;letter-spacing:-0.02em;">Rakip Analizi</h1>
+    <p style="margin-top:16px;font-size:16px;color:#fff;opacity:.8;max-width:560px;">4 rakip kadın hub sayfasının yapısal ve SEO karşılaştırması</p>
+    <div class="accent-line" style="margin:30px auto 0;"></div>
+  </div>
+</div>
+
+<!-- =============================================================
+     SLIDE 6 · RAKİP FEATURE MATRIX (TABLE)
+     ============================================================= -->
+<div class="slide">
+  <div class="bc"><span class="section">Rakip Analizi</span><span class="sep">|</span><span class="title">Yapısal &amp; SEO karşılaştırması</span></div>
+  <div style="padding:80px 56px 80px;">
+    <h1 style="font-size:36px;">4 Rakipte <span class="hl">hub yapısı</span> ve SEO sinyalleri</h1>
+    <p style="font-size:13.5px;color:var(--ink-2);margin-top:8px;max-width:780px;">Boyner, Amazon TR, Koton ve Marks &amp; Spencer kadın hub sayfalarının yapısal componentler, internal link katmanı ve schema markup açısından karşılaştırılması.</p>
+    <div style="display:grid;grid-template-columns:62% 1fr;gap:38px;margin-top:24px;">
+      <table class="tbl">
+        <thead><tr>
+          <th>Özellik</th>
+          <th>Özdilek</th>
+          <th>Boyner</th>
+          <th>Amazon TR</th>
+          <th>Koton</th>
+          <th>M&amp;S TR</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Hub var mı?</td><td class="no">PLP</td><td class="yes">✓</td><td class="par">PLP</td><td class="no">PLP</td><td class="yes">✓</td></tr>
+          <tr><td>Long-tail H1</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td><td class="no">✗</td></tr>
+          <tr><td>JSON-LD Schema</td><td class="yes">3</td><td class="no">0</td><td class="no">0</td><td class="no">0</td><td class="no">0</td></tr>
+          <tr><td>SEO içerik (kelime)</td><td class="no">0</td><td class="par">~500</td><td class="no">0</td><td class="yes">~2K</td><td class="no">0</td></tr>
+          <tr><td>Popüler aramalar</td><td class="no">✗</td><td class="yes">30+</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Marka logo grid</td><td class="no">✗</td><td class="par">kısmi</td><td class="yes">50+</td><td class="no">✗</td><td class="par">3</td></tr>
+          <tr><td>FAQ + Schema</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Yatay ürün carousel</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="yes">grid</td><td class="no">✗</td></tr>
+          <tr><td>Trust badge</td><td class="par">footer</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+      <ul class="insight-list">
+        <li><b class="cor">Özdilek</b> schema markup'ta tek başına lider — rakiplerin hiçbirinde JSON-LD bulunmamaktadır.</li>
+        <li>Koton'un <b class="gain">long-tail H1</b> ve multi-silo içerik pattern'ı SEO etkisi açısından örnek alınabilir.</li>
+        <li>Boyner'in <b class="gain">popüler aramalar</b> bloğu (30+ link) ve Amazon'un <b class="gain">marka grid</b>'i hub'da net SEO katmanı sağlamaktadır.</li>
+        <li>FAQ + FAQPage schema <b class="cor">hiçbir rakipte</b> yoktur — Özdilek için pure moat fırsatıdır.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="logo-bl"></div>
+  <div class="source-pill">Source: Playwright canlı tarama + Schema audit · 13.05.2026</div>
+  <div class="pg">06 / 14</div>
+</div>
+
+<!-- =============================================================
+     SLIDE 7 · BEST-OF-BREED COMPONENT MATRIX (CARDS)
+     ============================================================= -->
+<div class="slide gridlines">
+  <div class="bc"><span class="section">Rakip Analizi</span><span class="sep">|</span><span class="title">Best-of-breed component seti</span></div>
+  <div style="padding:80px 56px 60px;height:100%;box-sizing:border-box;">
+    <h1 style="font-size:38px;max-width:780px;">Her rakipten <span class="hl">en iyi parçayı</span> alarak hibrit yapı</h1>
+    <p style="font-size:13.5px;color:var(--ink-2);margin-top:10px;max-width:760px;">Önerilen Özdilek hub yapısı, her rakipten test edilmiş bir pattern'ı entegre etmektedir. Sonuç: rakiplerin tek başına sahip olmadığı dengeli bir hibrit deneyim.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:18px;margin-top:36px;">
+      <div class="card"><div class="ic" style="background:#1c2e40;">B</div><h4>Boyner'den</h4><p style="margin-top:8px;">Editorial stil koleksiyon kartları, popüler aramalar SEO link havuzu, "Tarzın Bi' Başka" 4 editorial kart pattern'ı.</p><div class="num">01</div></div>
+      <div class="card"><div class="ic" style="background:#f5a623;">A</div><h4>Amazon TR'den</h4><p style="margin-top:8px;">50+ marka logo grid, "Fiyata göre alışveriş" kategori-segment tile'ları, görsel-yoğun discovery layout.</p><div class="num">02</div></div>
+      <div class="card"><div class="ic" style="background:#000;">K</div><h4>Koton'dan</h4><p style="margin-top:8px;">Long-tail H1, 2.000+ kelime multi-silo SEO content, marka-özel filtre taksonomisi.</p><div class="num">03</div></div>
+      <div class="card"><div class="ic" style="background:#10332F;">M</div><h4>M&amp;S'ten</h4><p style="margin-top:8px;">Editorial büyük hero, alt-marka koleksiyon vitrini, minimal premium hissiyat, trust badge row.</p><div class="num">04</div></div>
+    </div>
+    <div style="margin-top:38px;padding:20px 24px;background:var(--coral-tint);border-radius:16px;border-left:4px solid var(--coral);">
+      <p style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--teal);">+ Özdilek'in kendi gücü: <span class="cor">JSON-LD schema yoğunluğu</span></p>
+      <p style="font-size:13px;color:var(--ink-2);margin-top:6px;">Mevcut 3 schema (BreadcrumbList + ItemList + WebPage) korunmakta; hub için CollectionPage + FAQPage eklenerek <b>5 schema</b>'ya çıkarılması önerilmektedir.</p>
+    </div>
+  </div>
+  <div class="logo-bl"></div>
+  <div class="pg">07 / 14</div>
+</div>
+
+<!-- =============================================================
+     SLIDE 8 · SEPARATOR 03
+     ============================================================= -->
+<div class="slide dark" style="display:flex;align-items:center;justify-content:center;">
+  <div style="position:absolute;left:-50px;bottom:-100px;font-family:var(--font-display);font-weight:700;font-size:520px;color:var(--teal-soft);line-height:1;">03</div>
+  <div style="text-align:center;position:relative;">
+    <div class="accent-line" style="margin:0 auto 30px;"></div>
+    <h1 style="color:#fff;font-size:64px;letter-spacing:-0.02em;">Önerilen Yapı</h1>
+    <p style="margin-top:16px;font-size:16px;color:#fff;opacity:.8;max-width:560px;">16 bölümlü hibrit hub mimarisi, yukarıdan aşağıya akış</p>
+    <div class="accent-line" style="margin:30px auto 0;"></div>
+  </div>
+</div>
+
+<!-- =============================================================
+     SLIDE 9 · HUB MIMARI DIYAGRAMI
+     ============================================================= -->
+<div class="slide gridlines">
+  <div class="bc"><span class="section">Önerilen Yapı</span><span class="sep">|</span><span class="title">16 bölümlü hub mimarisi</span></div>
+  <div style="padding:78px 56px 60px;height:100%;box-sizing:border-box;display:grid;grid-template-columns:34% 1fr;gap:40px;">
+    <div>
+      <h1 style="font-size:38px;">Hub sayfa <span class="hl">akışı</span></h1>
+      <p style="font-size:13.5px;color:var(--ink-2);margin-top:14px;">Yukarıdan aşağıya kullanıcı akışı: keşif → ürün → kampanya → SEO katmanı. Her bölüm bir SEO ve UX hedefine hizmet etmektedir.</p>
+      <ul class="insight-list" style="margin-top:22px;">
+        <li><b class="cor">Üst</b>: hızlı keşif + kategori<br><span style="color:var(--ink-3);font-size:12px;">Bölüm 1-7</span></li>
+        <li><b class="cor">Orta</b>: ürün vitrini + kampanya<br><span style="color:var(--ink-3);font-size:12px;">Bölüm 8-13</span></li>
+        <li><b class="cor">Alt</b>: SEO + güven katmanı<br><span style="color:var(--ink-3);font-size:12px;">Bölüm 14-16</span></li>
+      </ul>
+    </div>
+    <div style="font-family:var(--font-body);font-size:12.5px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;">
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">01</span><span>Top strip (kampanya bildirimi)</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">02</span><span>Header — logo, Mağaza/Market, sepet</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">03</span><span>Mega nav (Kadın aktif)</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">04</span><span>Breadcrumb + long-tail H1</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">05</span><span>Hero slider (3 slide, auto)</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">06</span><span>Trend Aramalar (chip carousel)</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">07</span><span>8'li Kadın Kategorileri tile grid</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">08</span><span>Favori Markalar (20 marka logo)</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">09</span><span><b>Özdilek'in Farkını Keşfet</b> — split showcase</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">10</span><span>En Avantajlı Ürünler (carousel)</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">11</span><span>Sezonun Enerjisini Keşfet (4 koleksiyon)</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">12</span><span>Yeni Sezon, Yeni Stil (carousel)</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">13</span><span><b>Tarzın Bi' Başka!</b> — 4 editorial kart</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">14</span><span>Kısa Süreli Fırsatlar! (carousel)</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">15</span><span><b>Loyalty</b> — Mobil App + Özdilekteyim Club</span></div>
+        <div style="display:flex;gap:10px;align-items:baseline;"><span style="font-family:var(--font-display);font-weight:700;color:var(--coral);width:24px;">16</span><span>Popüler Aramalar + Trust + SEO + FAQ + Footer</span></div>
+      </div>
+      <div style="margin-top:22px;padding:14px 18px;background:var(--mint);border-radius:12px;font-size:12px;color:var(--teal);"><b style="font-family:var(--font-display);">Toplam:</b> 80–150 unique internal link · 6 schema · 6 FAQ · 30+ long-tail keyword</div>
+    </div>
+  </div>
+  <div class="logo-bl"></div>
+  <div class="pg">09 / 14</div>
+</div>
+
+<!-- =============================================================
+     SLIDE 10 · YENİ COMPONENTLER (CARDS 2x2)
+     ============================================================= -->
+<div class="slide gridlines">
+  <div class="bc"><span class="section">Önerilen Yapı</span><span class="sep">|</span><span class="title">Yeni componentler</span></div>
+  <div style="padding:80px 56px 60px;height:100%;box-sizing:border-box;display:grid;grid-template-columns:36% 1fr;gap:46px;">
+    <div>
+      <h1 style="font-size:40px;">4 yeni <span class="hl">component</span></h1>
+      <p style="margin-top:16px;font-size:14px;color:var(--ink-2);">Mevcut /kadin2'de olmayan, rakiplerin parça parça uyguladığı kazanım componentleri. Tümü bu hub'da konsolide edilmektedir.</p>
+      <p style="margin-top:14px;font-size:13px;color:var(--ink-2);">Pattern referansları rakip incelemelerinden çıkarılmış, Özdilek tasarım diline (Montserrat, #ff6c0c) uyarlanmıştır.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:16px;">
+      <div class="card"><div class="ic">✦</div><h4>Tarzın Bi' Başka!</h4><p style="margin-top:6px;">4'lü editorial kart bloğu — kategori + fiyat ipucu (599 TL'den, %50 indirim vb.). Boyner pattern'ı baz alınarak Özdilek copy ile.</p><div class="num">01</div></div>
+      <div class="card"><div class="ic">⊟</div><h4>Split Showcase</h4><p style="margin-top:6px;">Sol metin + sağ yatay carousel. "Özdilek'in Farkını Keşfet" hedefli sayfalar için. Derimod pattern'ı.</p><div class="num">02</div></div>
+      <div class="card"><div class="ic">★</div><h4>Loyalty Block</h4><p style="margin-top:6px;">2 sütun: <b>Mobil Uygulama</b> (App Store / Google Play badge'leri) + <b>Özdilekteyim Club</b> (üyelik CTA). Mevcut sitede yok.</p><div class="num">03</div></div>
+      <div class="card"><div class="ic">⌕</div><h4>Popüler Aramalar</h4><p style="margin-top:6px;">25–40 long-tail keyword link havuzu. Boyner pattern'ı; SEO katmanı için kritik internal linking.</p><div class="num">04</div></div>
+    </div>
+  </div>
+  <div class="logo-bl"></div>
+  <div class="pg">10 / 14</div>
+</div>
+
+<!-- =============================================================
+     SLIDE 11 · MOCKUP PREVIEW
+     ============================================================= -->
+<div class="slide">
+  <div class="bc"><span class="section">Önerilen Yapı</span><span class="sep">|</span><span class="title">Mockup önizleme</span></div>
+  <div style="padding:78px 56px 60px;display:grid;grid-template-columns:1fr 38%;gap:40px;height:100%;box-sizing:border-box;">
+    <div style="position:relative;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-card-hover);background:#f5f5f5;">
+      <img src="mockup-desktop.png" alt="Kadın Hub Mockup" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
+      <div style="position:absolute;top:14px;right:14px;background:var(--coral);color:#fff;font-family:var(--font-display);font-weight:700;font-size:11px;padding:6px 12px;border-radius:8px;letter-spacing:0.04em;">LIVE MOCKUP</div>
+    </div>
+    <div>
+      <h1 style="font-size:38px;">Mockup <span class="hl">canlı</span></h1>
+      <p style="margin-top:14px;font-size:13.5px;color:var(--ink-2);">Self-contained HTML, Özdilek tasarım diline uygun (Montserrat + #ff6c0c). 45 görsel base64 inline. Responsive (desktop + mobile).</p>
+      <div style="margin-top:24px;padding:14px 18px;background:var(--coral-tint);border-radius:12px;">
+        <p style="font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--teal);">GitHub Repository</p>
+        <p style="font-family:'Outfit',monospace;font-size:11px;color:var(--ink-2);margin-top:4px;word-break:break-all;">github.com/erdogan1ozdemir/<br>ozdilek-hub-kadin-anasayfa-ornek</p>
+      </div>
+      <ul class="insight-list" style="margin-top:18px;">
+        <li>Header / footer / tema <b class="cor">birebir Özdilek</b> (gerçek logo SVG + Mağaza-Market switch).</li>
+        <li>Etkileşim: hero slider, scroll-snap carousel, FAQ accordion, mobil drawer.</li>
+        <li>Schema: <b class="gain">CollectionPage + BreadcrumbList + FAQPage</b> inline JSON-LD.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="logo-bl"></div>
+  <div class="source-pill">Self-contained · 3.8 MB · 16 bölüm</div>
+  <div class="pg">11 / 14</div>
+</div>
+
+<!-- =============================================================
+     SLIDE 12 · SEPARATOR 04
+     ============================================================= -->
+<div class="slide dark" style="display:flex;align-items:center;justify-content:center;">
+  <div style="position:absolute;left:-50px;bottom:-100px;font-family:var(--font-display);font-weight:700;font-size:520px;color:var(--teal-soft);line-height:1;">04</div>
+  <div style="text-align:center;position:relative;">
+    <div class="accent-line" style="margin:0 auto 30px;"></div>
+    <h1 style="color:#fff;font-size:64px;letter-spacing:-0.02em;">SEO Etkisi &amp; Roadmap</h1>
+    <p style="margin-top:16px;font-size:16px;color:#fff;opacity:.8;max-width:540px;">Beklenen kazanımlar ve uygulama takvimi</p>
+    <div class="accent-line" style="margin:30px auto 0;"></div>
+  </div>
+</div>
+
+<!-- =============================================================
+     SLIDE 13 · SEO ETKİSİ (KPI)
+     ============================================================= -->
+<div class="slide">
+  <div class="bc"><span class="section">SEO Etkisi</span><span class="sep">|</span><span class="title">Beklenen kazanımlar</span></div>
+  <div style="padding:80px 56px 40px;display:grid;grid-template-columns:36% 1fr;gap:46px;">
+    <div>
+      <h1 style="font-size:40px;">Beklenen <span class="hl">SEO etkisi</span></h1>
+      <p style="margin-top:16px;font-size:13.5px;color:var(--ink-2);">Hub sayfası canlıya alındıktan sonra ilk <b>3-6 ay</b> içinde gözlemlenmesi beklenen kazanımlar. Tahminler Koton ve Boyner benchmarks'larından türetilmiştir.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;">
+      <div class="kpi dark"><div class="v">5<sup>×</sup></div><div class="l">JSON-LD Schema<br>(3 → 5)</div></div>
+      <div class="kpi dark"><div class="v">150<sup>+</sup></div><div class="l">Unique Internal<br>Link / Hub</div></div>
+      <div class="kpi coral"><div class="v">+40<sup>%</sup></div><div class="l">Beklenen Organik<br>Trafik Artışı (6 ay)</div></div>
+    </div>
+  </div>
+  <div style="padding:0 56px;display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:24px;">
+    <div>
+      <h3 style="font-size:18px;margin-bottom:14px;color:var(--teal);">Şu an eklenecek schema'lar</h3>
+      <ul class="insight-list">
+        <li><b class="cor">CollectionPage</b> — hub sayfası temel tipi, Google için rich result sinyali.</li>
+        <li><b class="cor">FAQPage</b> — 6 SSS, SERP'te accordion görünümü potansiyeli (rakiplerde yok).</li>
+        <li><b class="cor">BreadcrumbList genişletilmiş</b> — 2 → 3 seviye, duplicate düzeltilmiş.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-size:18px;margin-bottom:14px;color:var(--teal);">Kazanım hipotezleri</h3>
+      <ul class="insight-list">
+        <li>"Kadın giyim" benzeri <b class="gain">primary keyword'lerde</b> sıralama iyileşmesi beklenmektedir.</li>
+        <li>30+ long-tail link ile <b class="gain">alt kategori PLP</b>'lerde indirect ranking boost.</li>
+        <li>FAQ schema rakipte olmadığı için <b class="gain">SERP feature</b> kazanımı olasıdır.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="logo-bl"></div>
+  <div class="source-pill">Source: Inbound benchmark · Koton + Boyner referansı</div>
+  <div class="pg">13 / 14</div>
+</div>
+
+<!-- =============================================================
+     SLIDE 14 · ROADMAP (TIMELINE)
+     ============================================================= -->
+<div class="slide gridlines">
+  <div class="bc"><span class="section">Roadmap</span><span class="sep">|</span><span class="title">Uygulama takvimi</span></div>
+  <div style="padding:78px 56px 80px;">
+    <h1 style="font-size:38px;">Hub sayfası <span class="hl">uygulama takvimi</span></h1>
+    <p style="font-size:13.5px;color:var(--ink-2);margin-top:8px;max-width:760px;">Önerilen 4 fazlı implementasyon. Toplam tahmini süre: <b>8-10 hafta</b>. Faz 4 (diğer hub'lara genişleme) sonraki çeyrekte değerlendirilebilir.</p>
+    <div style="margin-top:40px;position:relative;">
+      <div style="position:absolute;top:34px;left:6%;right:6%;height:2px;background:var(--line);"></div>
+      <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:24px;">
+        <div style="text-align:center;">
+          <div style="width:68px;height:68px;border-radius:999px;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:24px;margin:0 auto;position:relative;z-index:1;box-shadow:0 4px 14px rgba(255,123,82,.35);">F1</div>
+          <h4 style="font-family:var(--font-display);font-weight:700;font-size:17px;margin-top:16px;">Tasarım &amp; Spec</h4>
+          <p style="font-size:12px;color:var(--ink-2);margin-top:6px;line-height:1.5;">2 hafta · Final Figma, design tokens, Spartacus component spec</p>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:68px;height:68px;border-radius:999px;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:24px;margin:0 auto;position:relative;z-index:1;box-shadow:0 4px 14px rgba(255,123,82,.35);">F2</div>
+          <h4 style="font-family:var(--font-display);font-weight:700;font-size:17px;margin-top:16px;">Frontend Dev</h4>
+          <p style="font-size:12px;color:var(--ink-2);margin-top:6px;line-height:1.5;">3-4 hafta · Spartacus / Angular bileşenler, CMS slot entegrasyonu</p>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:68px;height:68px;border-radius:999px;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:24px;margin:0 auto;position:relative;z-index:1;box-shadow:0 4px 14px rgba(255,123,82,.35);">F3</div>
+          <h4 style="font-family:var(--font-display);font-weight:700;font-size:17px;margin-top:16px;">Content &amp; Schema</h4>
+          <p style="font-size:12px;color:var(--ink-2);margin-top:6px;line-height:1.5;">2 hafta · SEO copy, FAQ, asset üretimi, JSON-LD entegrasyonu</p>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:68px;height:68px;border-radius:999px;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:24px;margin:0 auto;position:relative;z-index:1;box-shadow:0 4px 14px rgba(16,51,47,.35);">F4</div>
+          <h4 style="font-family:var(--font-display);font-weight:700;font-size:17px;margin-top:16px;">Launch &amp; Genişle</h4>
+          <p style="font-size:12px;color:var(--ink-2);margin-top:6px;line-height:1.5;">1-2 hafta + sonra · Deploy, measure, Erkek/Çocuk hub'larına replikasyon</p>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:36px;padding:18px 22px;background:var(--mint);border-radius:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;font-size:12.5px;">
+      <div><b style="font-family:var(--font-display);color:var(--teal);">Inbound</b><br><span style="color:var(--ink-2);">SEO spec · içerik · schema · UX rehberi</span></div>
+      <div><b style="font-family:var(--font-display);color:var(--teal);">Özdilek Marka</b><br><span style="color:var(--ink-2);">Görsel asset · marka onayı · CMS slot içeriği</span></div>
+      <div><b style="font-family:var(--font-display);color:var(--teal);">Özdilek IT</b><br><span style="color:var(--ink-2);">Spartacus dev · deploy · QA</span></div>
+    </div>
+  </div>
+  <div class="logo-bl"></div>
+  <div class="pg">14 / 14</div>
+</div>
+
+<!-- =============================================================
+     SLIDE 15 · CLOSING
+     ============================================================= -->
+<div class="slide coral" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+  <img src="inbound-big-o-white.png" alt="" style="position:absolute;left:-260px;top:-160px;height:1180px;opacity:.12;pointer-events:none;">
+  <div style="text-align:center;position:relative;max-width:880px;padding:0 60px;">
+    <div class="accent-line" style="margin:0 auto 36px;background:#fff;width:80px;"></div>
+    <h1 style="font-size:104px;color:#fff;letter-spacing:-0.025em;">Teşekkürler</h1>
+    <p style="margin-top:28px;font-size:18px;color:#fff;opacity:.95;font-weight:300;line-height:1.6;max-width:540px;margin-left:auto;margin-right:auto;">Sorularınız ve geri bildirimleriniz için hazırız.<br>Sonraki adım: tasarım onayı + faz 1 başlangıcı.</p>
+    <div style="margin-top:48px;display:flex;justify-content:center;gap:48px;font-family:var(--font-body);font-size:13px;color:#fff;opacity:.95;">
+      <div><div style="font-family:var(--font-display);font-weight:700;letter-spacing:0.08em;font-size:11px;text-transform:uppercase;opacity:.8;">İletişim</div><div style="margin-top:6px;">welcome@inbound.com.tr</div></div>
+      <div><div style="font-family:var(--font-display);font-weight:700;letter-spacing:0.08em;font-size:11px;text-transform:uppercase;opacity:.8;">Mockup</div><div style="margin-top:6px;">github.com/erdogan1ozdemir/ozdilek-hub</div></div>
+    </div>
+  </div>
+  <img src="inbound-wordmark-white.png" alt="Inbound" style="position:absolute;bottom:48px;left:50%;transform:translateX(-50%);height:28px;">
+</div>
+
+</div><!-- /.deck -->
+</body>
+</html>
