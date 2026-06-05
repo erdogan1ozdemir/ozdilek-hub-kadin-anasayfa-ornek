@@ -121,6 +121,9 @@
 /* love-tinted section link */
 .section-link.love { color: var(--love); }
 .section-link.love:hover { color: var(--love-deep); }
+/* arrow buttons visible for brand wrap */
+.brand-wrap .carousel-nav { display:none; }
+@media (min-width:1024px){ .brand-wrap .carousel-nav { display:inline-flex; } }
 </style>
 
 <main class="container" role="main">
@@ -234,6 +237,27 @@
     </div>
   </section>
 
+  <!-- SEVGİLİLER GÜNÜNE ÖZEL ÖZDİLEKTEYİM'İN ÖNERİLERİ -->
+  <section class="section" aria-label="Özdilekteyim önerileri" style="margin-bottom:48px;">
+    <div class="section-head">
+      <h2 class="section-title">Sevgililer Gününe Özel Özdilekteyim'in Önerileri</h2>
+      <a href="#urunler" class="section-link love">Tümünü Gör →</a>
+    </div>
+    <div class="product-carousel-wrap">
+      <button class="carousel-nav carousel-nav-prev" onclick="scrollCarousel('campRec', -1)">‹</button>
+      <button class="carousel-nav carousel-nav-next" onclick="scrollCarousel('campRec', 1)">›</button>
+      <div class="product-carousel" id="campRec">
+        <a href="#" class="product-card"><div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/8721221760345.jpg" alt="Tommy El Çantası"></div><div class="product-brand">Tommy Hilfiger</div><div class="product-title">El Çantası AW0AW18122R07 Kahve</div><div class="product-prices"><span class="list-price">8.919,00 TL</span><span class="promo-price">6.243,30 TL</span></div><div class="promo-badge">Sepette %30 İndirim</div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div></a>
+        <a href="#" class="product-card"><div class="product-img-wrap"><button class="product-fav">♡</button><img src="img/8683559844787.jpg" alt="İpekyol Gömlek"></div><div class="product-brand">İpekyol</div><div class="product-title">Kadın Gömlek IW6250025096 Lacivert</div><div class="product-prices"><span class="promo-price">2.499,99 TL</span></div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div></a>
+        <a href="#" class="product-card"><div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/5715101613329.jpg" alt="Only Kazak"></div><div class="product-brand">Only</div><div class="product-title">Kadın Kazak 15233173 Beyaz</div><div class="product-prices"><span class="list-price">1.399,99 TL</span><span class="promo-price">979,99 TL</span></div><div class="promo-badge">Sepette %30 İndirim</div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div></a>
+        <a href="#" class="product-card"><div class="product-img-wrap"><span class="product-badge">YENİ</span><button class="product-fav">♡</button><img src="img/8721187024376.jpg" alt="CK Bot"></div><div class="product-brand">Calvin Klein Jeans</div><div class="product-title">Mid Rainboot Runner Bot Siyah</div><div class="product-prices"><span class="promo-price">5.999,00 TL</span></div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div></a>
+        <a href="#" class="product-card"><div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/8721221789896.jpg" alt="Tommy Ceket"></div><div class="product-brand">Tommy Hilfiger</div><div class="product-title">Kadın Ceket WW0WW47998 Mavi</div><div class="product-prices"><span class="list-price">12.069,00 TL</span><span class="promo-price">8.448,30 TL</span></div><div class="promo-badge">Sepette %30 İndirim</div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div></a>
+        <a href="#" class="product-card"><div class="product-img-wrap"><button class="product-fav">♡</button><img src="img/8682233197638.jpg" alt="Benetton Çanta"></div><div class="product-brand">UCB</div><div class="product-title">Kadın Çapraz Çanta Siyah</div><div class="product-prices"><span class="promo-price">2.688,00 TL</span></div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div></a>
+        <a href="#" class="product-card"><div class="product-img-wrap"><span class="product-badge">%20</span><button class="product-fav">♡</button><img src="img/8683031012291.jpg" alt="Skechers Ayakkabı"></div><div class="product-brand">Skechers</div><div class="product-title">Skech Lite Pro Slip Ins Lacivert</div><div class="product-prices"><span class="list-price">4.999,00 TL</span><span class="promo-price">3.999,20 TL</span></div><div class="promo-badge">Sepette %20 İndirim</div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div></a>
+      </div>
+    </div>
+  </section>
+
   <!-- BÜTÇE -->
   <section class="section" aria-label="Fiyata göre hediye" style="margin-bottom:48px;">
     <div class="section-head"><h2 class="section-title">Bütçene Göre Hediye Seç</h2></div>
@@ -252,7 +276,10 @@
       <h2 class="section-title">Sevgililer Gününde Öne Çıkan Markalar</h2>
       <a href="/markalar" class="section-link love">Tüm Markalar →</a>
     </div>
-    <div class="brand-carousel">
+    <div class="product-carousel-wrap brand-wrap">
+    <button class="carousel-nav carousel-nav-prev" onclick="scrollCarousel('campBrands', -1)">‹</button>
+    <button class="carousel-nav carousel-nav-next" onclick="scrollCarousel('campBrands', 1)">›</button>
+    <div class="brand-carousel" id="campBrands">
       <a href="/marka/guess" class="brand-card"><img src="img/brands/brand-guess.webp" alt="Guess"></a>
       <a href="/marka/calvin-klein" class="brand-card"><img src="img/brands/brand-ck.webp" alt="Calvin Klein"></a>
       <a href="/marka/tommy-hilfiger" class="brand-card"><img src="img/brands/brand-tommy.webp" alt="Tommy Hilfiger"></a>
@@ -265,6 +292,7 @@
       <a href="/marka/karaca" class="brand-card"><div class="brand-card-text">Karaca</div></a>
       <a href="/marka/penti" class="brand-card"><div class="brand-card-text">Penti</div></a>
       <a href="/marka/atelier-rebul" class="brand-card"><div class="brand-card-text">Atelier Rebul</div></a>
+    </div>
     </div>
   </section>
 
