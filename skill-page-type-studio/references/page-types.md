@@ -40,8 +40,15 @@ Schema (if generating real page later): CollectionPage + BreadcrumbList + ItemLi
 3. **Per-category subcategory carousels**: one section per top category (Kadın → Elbise/Pantolon/…,
    Erkek, Çocuk, Ayakkabı, Spor & Outdoor, Ev & Yaşam, Parfüm & Kozmetik, Kampanyalar). Each = header
    (name + "Tümünü Gör") + horizontal scroll of **small subcategory cards** (image + label) with arrows.
-4. **Editorial "Keşfetmeye Devam Edin" cards** (4 gradient cards: Yeni Gelenler / İndirimli / Çok
-   Satanlar / Markalar) — adds homepage-style variety/mizansen.
+4. **Editorial "Keşfetmeye Devam Edin" cards** (4 **image-backed** cards) — homepage-style mizansen.
+   Make these **distinct "worlds"/lifestyle entry points** (e.g. Yeni Sezon Trendleri, Ev & Yaşam,
+   Spor & Outdoor, Kozmetik), **not** Çok Satanlar / Yeni / İndirimli — those already exist as the two
+   product carousels below, so duplicating them is a waste of a slot. Use a **real photo per card**
+   (`<img class="disc-bg" object-fit:cover>` matching the card's aspect — download at the same ratio,
+   e.g. 720×540 for 4/3, so there's zero distortion) + a bottom-to-top dark gradient (`::after`,
+   `rgba(17,22,30,0)→.86`) + `text-shadow` for legibility, a small blurred eyebrow pill, a one-line
+   desc (hide on mobile), and a thin per-world accent stripe. Avoid flat CSS gradients — they read as
+   placeholders.
 5. **Brand carousel** (arrows).
 6. **Two product carousels**: "En Çok Satanlar" + "En Yeni Ürünler".
 7. **Popular searches** chips.

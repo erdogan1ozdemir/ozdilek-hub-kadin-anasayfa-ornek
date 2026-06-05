@@ -32,16 +32,18 @@
 /* editorial discovery cards (mizansen variety) */
 .disc-row { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
 @media(min-width:768px){ .disc-row{ grid-template-columns:repeat(4,1fr); gap:16px; } }
-.disc-card { position:relative; aspect-ratio:4/3; border-radius:var(--r-card); overflow:hidden; display:flex; align-items:flex-end; padding:18px; color:#fff; transition:transform var(--t), box-shadow var(--t); }
+.disc-card { position:relative; aspect-ratio:4/3; border-radius:var(--r-card); overflow:hidden; display:flex; align-items:flex-end; padding:18px; color:#fff; background:var(--ghost); transition:transform var(--t), box-shadow var(--t); }
 .disc-card:hover{ transform:translateY(-3px); box-shadow:var(--sh-lg); }
-.disc-1{ background:linear-gradient(135deg,#ff6c0c,#ff9a3c); }
-.disc-2{ background:linear-gradient(135deg,#1c2e40,#34495e); }
-.disc-3{ background:linear-gradient(135deg,#7d2e7d,#c0398a); }
-.disc-4{ background:linear-gradient(135deg,#0f6e5e,#4dbf95); }
+.disc-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; transition:transform .5s ease; }
+.disc-card:hover .disc-bg{ transform:scale(1.06); }
+.disc-card::after{ content:''; position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(17,22,30,0) 22%, rgba(17,22,30,.48) 58%, rgba(17,22,30,.86) 100%); }
+.disc-accent{ position:absolute; left:0; top:0; bottom:0; width:4px; z-index:2; }
 .disc-content{ position:relative; z-index:2; }
-.disc-eyebrow{ font-size:11px; text-transform:uppercase; letter-spacing:.6px; opacity:.92; margin-bottom:5px; font-weight:600; }
-.disc-title{ font-size:18px; font-weight:700; line-height:1.15; margin-bottom:7px; }
-.disc-cta{ font-size:12px; font-weight:600; opacity:.95; }
+.disc-eyebrow{ display:inline-block; font-size:10.5px; text-transform:uppercase; letter-spacing:.7px; margin-bottom:7px; font-weight:700; padding:3px 9px; border-radius:100px; background:rgba(255,255,255,.18); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); }
+.disc-title{ font-size:18px; font-weight:700; line-height:1.15; margin-bottom:6px; text-shadow:0 1px 8px rgba(0,0,0,.4); }
+.disc-desc{ font-size:11.5px; opacity:.92; line-height:1.4; margin-bottom:9px; max-width:92%; text-shadow:0 1px 6px rgba(0,0,0,.5); }
+.disc-cta{ font-size:12.5px; font-weight:700; opacity:.98; }
+@media(max-width:600px){ .disc-desc{ display:none; } .disc-card{ padding:14px; } }
 
 /* brand/subcat carousel arrows inherit the shared always-visible .carousel-nav rule */
 </style>
@@ -71,12 +73,28 @@
 
   <!-- KOLEKSİYONLARI KEŞFET (editorial / mizansen variety) -->
   <section class="section" aria-label="Öne çıkan sayfalar" style="margin-bottom:44px;">
-    <div class="section-head"><h2 class="section-title">Keşfetmeye Devam Edin</h2></div>
+    <div class="section-head"><h2 class="section-title">Keşfetmeye Devam Edin</h2><a href="/kategoriler" class="section-link">Tüm Dünyalar →</a></div>
     <div class="disc-row">
-      <a href="/yeni-sezon" class="disc-card disc-1"><div class="disc-content"><div class="disc-eyebrow">Yeni Sezon</div><div class="disc-title">Yeni Gelenler</div><span class="disc-cta">Keşfet →</span></div></a>
-      <a href="/kampanyalar" class="disc-card disc-2"><div class="disc-content"><div class="disc-eyebrow">Fırsatlar</div><div class="disc-title">İndirimli Ürünler</div><span class="disc-cta">İncele →</span></div></a>
-      <a href="/cok-satanlar" class="disc-card disc-3"><div class="disc-content"><div class="disc-eyebrow">Popüler</div><div class="disc-title">Çok Satanlar</div><span class="disc-cta">Gör →</span></div></a>
-      <a href="/markalar" class="disc-card disc-4"><div class="disc-content"><div class="disc-eyebrow">Marka Dünyası</div><div class="disc-title">Tüm Markalar</div><span class="disc-cta">Keşfet →</span></div></a>
+      <a href="/yeni-sezon" class="disc-card">
+        <img class="disc-bg" src="img/p404/edit-moda.jpg" alt="Yeni sezon moda trendleri">
+        <span class="disc-accent" style="background:#ff6c0c;"></span>
+        <div class="disc-content"><span class="disc-eyebrow">Bahar / Yaz '26</span><div class="disc-title">Yeni Sezon Trendleri</div><p class="disc-desc">Sezonun öne çıkan parçaları ve trend renkleri</p><span class="disc-cta">Keşfet →</span></div>
+      </a>
+      <a href="/ev-yasam" class="disc-card">
+        <img class="disc-bg" src="img/p404/edit-ev.jpg" alt="Ev ve yaşam, ev tekstili">
+        <span class="disc-accent" style="background:#3bb38f;"></span>
+        <div class="disc-content"><span class="disc-eyebrow">Özdilek Home</span><div class="disc-title">Ev &amp; Yaşam Dünyası</div><p class="disc-desc">Nevresim, havlu ve dekorasyonda konfor</p><span class="disc-cta">Keşfet →</span></div>
+      </a>
+      <a href="/spor-outdoor" class="disc-card">
+        <img class="disc-bg" src="img/p404/edit-spor.jpg" alt="Spor ve outdoor, aktif yaşam">
+        <span class="disc-accent" style="background:#2f80ed;"></span>
+        <div class="disc-content"><span class="disc-eyebrow">Aktif Yaşam</span><div class="disc-title">Spor &amp; Outdoor</div><p class="disc-desc">Koşu, fitness ve outdoor ekipmanları</p><span class="disc-cta">İncele →</span></div>
+      </a>
+      <a href="/parfum-kozmetik" class="disc-card">
+        <img class="disc-bg" src="img/p404/edit-kozmetik.jpg" alt="Kozmetik ve güzellik ürünleri">
+        <span class="disc-accent" style="background:#c0398a;"></span>
+        <div class="disc-content"><span class="disc-eyebrow">Bakım Rutini</span><div class="disc-title">Kozmetik &amp; Güzellik</div><p class="disc-desc">Parfüm, makyaj ve cilt bakımı</p><span class="disc-cta">Keşfet →</span></div>
+      </a>
     </div>
   </section>
 
