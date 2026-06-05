@@ -50,7 +50,7 @@ def embed_images(html):
 ROBUST_SCRIPT = """<script>
 function scrollCarousel(id, direction){
   var c=document.getElementById(id); if(!c)return;
-  var card=c.querySelector('.product-card'); var w=card?card.offsetWidth+12:220;
+  var card=c.firstElementChild; var w=card?card.offsetWidth+14:200;
   c.scrollBy({left:direction*w*2,behavior:'smooth'});
 }
 function toggleDrawer(){
@@ -61,10 +61,66 @@ function togglePlpFilter(){
   var s=document.getElementById('plpSidebar'), o=document.getElementById('plpFilterOverlay');
   if(s)s.classList.toggle('open'); if(o)o.classList.toggle('open');
 }
+/* Campaign hero slider (auto, guarded) */
+(function(){
+  var slides=document.getElementById('campHeroSlides'); if(!slides)return;
+  var n=slides.children.length,i=0,dots=document.querySelectorAll('.camp-dot'),t;
+  function go(x){i=(x+n)%n;slides.style.transform='translateX(-'+(i*100)+'%)';for(var k=0;k<dots.length;k++)dots[k].classList.toggle('active',k===i);reset();}
+  function nx(){go(i+1);}function pv(){go(i-1);}
+  function reset(){clearInterval(t);t=setInterval(nx,6000);}
+  window.campHeroGo=go;window.campHeroNext=nx;window.campHeroPrev=pv;reset();
+  var w=slides.closest('.camp-hero-slider');
+  if(w){w.addEventListener('mouseenter',function(){clearInterval(t);});w.addEventListener('mouseleave',reset);}
+})();
 </script>"""
 
-def build(title, desc, canonical, fragment_path, out_name, og_type='website'):
+# ---- 404 category subcategory carousel generator ----
+CAT_DATA = [
+  ("Kadın", "/kadin", "kadin", ["Elbise","Pantolon","Tişört","Gömlek","Ceket","Çanta","Ayakkabı","İç Giyim"]),
+  ("Erkek", "/erkek", "erkek", ["Tişört","Gömlek","Pantolon","Jean","Sweatshirt","Ceket","Ayakkabı","Mont"]),
+  ("Çocuk", "/cocuk", "cocuk", ["Bebek","Kız Çocuk","Erkek Çocuk","Tişört","Elbise","Şort Takım","Ayakkabı","Mont"]),
+  ("Ayakkabı", "/ayakkabi", "ayakkabi", ["Sneaker","Bot","Topuklu","Terlik","Sandalet","Çizme","Babet","Spor Ayakkabı"]),
+  ("Spor & Outdoor", "/spor-outdoor", "spor", ["Spor Ayakkabı","Spor Giyim","Tayt","Outdoor","Kamp","Bisiklet","Fitness","Mont"]),
+  ("Ev & Yaşam", "/ev-yasam", "ev", ["Mutfak","Küçük Ev Aletleri","Dekorasyon","Banyo","Aydınlatma","Saklama","Sofra","Aksesuar"]),
+  ("Parfüm & Kozmetik", "/parfum-kozmetik", "kozmetik", ["Parfüm","Makyaj","Cilt Bakımı","Saç Bakımı","Erkek Bakım","Ağız Bakımı","Set","Cilt Temizleme"]),
+  ("Kampanyalar", "/kampanyalar", "kampanya", ["Süper Fırsatlar","2 Al 1 Öde","Outlet","%50 İndirim","Sezon Sonu","Haftanın Fırsatı","Yeni Sezon","Çok Satanlar"]),
+]
+
+def slugify(s):
+    tr = str.maketrans("şŞıİğĞüÜöÖçÇ ","ssiigguuoocc-")
+    return s.lower().translate(tr).replace("%","yuzde").replace("&","ve").replace("'","")
+
+def gen_category_carousels():
+    out = []
+    for (name, href, key, subs) in CAT_DATA:
+        cid = f"subcat-{key}"
+        cards = []
+        for idx, sub in enumerate(subs):
+            img = f"img/subcat/{key}-{(idx % 3) + 1}.jpg"
+            sub_href = f"{href}-{slugify(sub)}"
+            cards.append(
+                f'<a href="{sub_href}" class="subcat-card"><div class="subcat-thumb"><img src="{img}" alt="{sub}"></div><span class="subcat-label">{sub}</span></a>'
+            )
+        out.append(f"""  <section class="subcat-section" aria-label="{name} kategorileri">
+    <div class="section-head">
+      <h2 class="section-title">{name}</h2>
+      <a href="{href}" class="section-link">Tümünü Gör →</a>
+    </div>
+    <div class="product-carousel-wrap">
+      <button class="carousel-nav carousel-nav-prev" onclick="scrollCarousel('{cid}', -1)">‹</button>
+      <button class="carousel-nav carousel-nav-next" onclick="scrollCarousel('{cid}', 1)">›</button>
+      <div class="subcat-row" id="{cid}">
+        {''.join(cards)}
+      </div>
+    </div>
+  </section>""")
+    return "\n".join(out)
+
+def build(title, desc, canonical, fragment_path, out_name, og_type='website', inject=None):
     frag = (ROOT / fragment_path).read_text(encoding='utf-8')
+    if inject:
+        for placeholder, html in inject.items():
+            frag = frag.replace(placeholder, html)
     frag = embed_images(frag)
     hdr = embed_images(header_html)
     ftr = embed_images(footer_html)
@@ -100,6 +156,7 @@ build(
   canonical="https://www.ozdilekteyim.com/404",
   fragment_path="404-content.html",
   out_name="404.html",
+  inject={"<!--CATEGORY_CAROUSELS-->": gen_category_carousels()},
 )
 
 # Build campaign

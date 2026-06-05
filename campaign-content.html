@@ -2,56 +2,77 @@
 /* ===== CAMPAIGN (Sevgililer Günü) PAGE SPECIFIC ===== */
 :root { --love: #d6336c; --love-deep: #b02a5b; --love-soft: #ffeaf1; }
 
-/* Campaign hero */
-.camp-hero { position:relative; border-radius: var(--r-card); overflow:hidden; aspect-ratio: 24 / 9; min-height: 260px; margin-bottom: 40px; background-size:cover; background-position:center; display:flex; align-items:center; }
-@media (max-width:767px){ .camp-hero{ aspect-ratio: 4/3; min-height:auto; } }
-.camp-hero::before { content:''; position:absolute; inset:0; background: linear-gradient(90deg, rgba(123,18,52,.78) 0%, rgba(150,30,70,.5) 45%, rgba(214,51,108,.15) 75%, transparent 100%); z-index:1; }
+/* ---- Campaign hero SLIDER ---- */
+.camp-hero-slider { position:relative; border-radius: var(--r-card); overflow:hidden; aspect-ratio: 24 / 9; min-height: 280px; margin-bottom: 40px; background: var(--ghost); }
+@media (max-width:767px){ .camp-hero-slider{ aspect-ratio: 4/3; min-height:auto; } }
+.camp-hero-slides { display:flex; height:100%; transition: transform .6s cubic-bezier(.4,0,.2,1); }
+.camp-hero-slide { flex:0 0 100%; height:100%; position:relative; display:flex; align-items:center; background-size:cover; background-position:center; }
+.camp-hero-slide::before { content:''; position:absolute; inset:0; background: linear-gradient(90deg, rgba(123,18,52,.8) 0%, rgba(150,30,70,.5) 45%, rgba(214,51,108,.12) 75%, transparent 100%); z-index:1; }
 .camp-hero-content { position:relative; z-index:2; padding: 40px 56px; color:#fff; max-width: 600px; }
-@media (max-width:767px){ .camp-hero-content{ padding: 24px; } }
+@media (max-width:767px){ .camp-hero-content{ padding: 22px 24px; } }
 .camp-hero-eyebrow { display:inline-flex; align-items:center; gap:7px; background: rgba(255,255,255,.18); backdrop-filter: blur(8px); padding:6px 13px; border-radius: var(--r-pill); font-size:12px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; margin-bottom:14px; }
-.camp-hero-title { font-size: clamp(26px, 4vw, 46px); font-weight:700; line-height:1.1; margin-bottom:12px; text-shadow: 0 2px 14px rgba(0,0,0,.25); }
-.camp-hero-sub { font-size: 15px; opacity:.96; margin-bottom:22px; max-width:440px; }
-.camp-hero-cta { display:inline-flex; align-items:center; gap:8px; background:#fff; color: var(--love-deep); padding:13px 28px; border-radius:var(--r-pill); font-weight:700; font-size:14px; transition: all var(--t); }
+.camp-hero-title { font-size: clamp(24px, 3.6vw, 44px); font-weight:700; line-height:1.1; margin-bottom:12px; text-shadow: 0 2px 14px rgba(0,0,0,.25); }
+.camp-hero-sub { font-size: 15px; opacity:.96; margin-bottom:20px; max-width:430px; }
+.camp-hero-cta { display:inline-flex; align-items:center; gap:8px; background:#fff; color: var(--love-deep); padding:12px 26px; border-radius:var(--r-pill); font-weight:700; font-size:14px; transition: all var(--t); }
 .camp-hero-cta:hover { transform: translateY(-2px); box-shadow: var(--sh-md); color: var(--love-deep); }
+.camp-dots { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:3; }
+.camp-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.55); border:none; cursor:pointer; transition:all var(--t); padding:0; }
+.camp-dot.active { width:26px; background:#fff; border-radius:4px; }
+.camp-hero-nav { position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.92); border:none; display:flex; align-items:center; justify-content:center; font-size:20px; color:var(--text); cursor:pointer; z-index:3; transition:all var(--t); }
+.camp-hero-nav:hover { background:#fff; color:var(--love); }
+.camp-hero-nav.prev{ left:16px; } .camp-hero-nav.next{ right:16px; }
+@media (max-width:767px){ .camp-hero-nav{ width:34px; height:34px; font-size:16px; } }
 
 /* breadcrumb tweak */
 .breadcrumb-list li:last-child { color: var(--love); }
 
-/* Gift category tiles */
-.gift-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
-@media (min-width:600px){ .gift-grid{ grid-template-columns: repeat(3, 1fr); } }
-@media (min-width:1024px){ .gift-grid{ grid-template-columns: repeat(6, 1fr); gap:16px; } }
-.gift-tile { position:relative; display:block; border-radius: var(--r-card); overflow:hidden; aspect-ratio:1; transition: transform var(--t), box-shadow var(--t); }
-.gift-tile:hover { transform: translateY(-4px); box-shadow: var(--sh-lg); }
-.gift-tile img { width:100%; height:100%; object-fit:cover; transition: transform .5s ease; }
-.gift-tile:hover img { transform: scale(1.06); }
-.gift-tile-label { position:absolute; left:0; right:0; bottom:0; padding:12px 10px; background: linear-gradient(transparent, rgba(123,18,52,.82) 80%); color:#fff; font-size:13px; font-weight:700; text-align:center; }
+/* ---- Persona concept row ---- */
+.persona-row { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+@media (max-width:767px){ .persona-row{ grid-template-columns:1fr; gap:12px; } }
+.persona-card { position:relative; border-radius: var(--r-card); overflow:hidden; aspect-ratio: 16/10; display:flex; align-items:flex-end; padding:22px; color:#fff; transition: transform var(--t); }
+.persona-card:hover { transform: translateY(-3px); box-shadow: var(--sh-lg); }
+.persona-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; transition:transform .5s ease; }
+.persona-card:hover img { transform:scale(1.05); }
+.persona-card::after { content:''; position:absolute; inset:0; background: linear-gradient(180deg, transparent 30%, rgba(123,18,52,.85) 100%); z-index:1; }
+.persona-card-content { position:relative; z-index:2; }
+.persona-card-eyebrow { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; opacity:.9; margin-bottom:4px; }
+.persona-card-title { font-size:19px; font-weight:700; line-height:1.15; margin-bottom:8px; }
+.persona-card-cta { font-size:12.5px; font-weight:600; display:inline-flex; align-items:center; gap:5px; }
+
+/* ---- Gift categories SLIDER (single row, smaller cards) ---- */
+.gift-slider-wrap { position:relative; }
+.gift-slider { display:flex; gap:14px; overflow-x:auto; padding:4px 2px 10px; scroll-snap-type:x mandatory; }
+.gift-slider::-webkit-scrollbar{ height:4px; } .gift-slider::-webkit-scrollbar-thumb{ background:var(--light); border-radius:2px; }
+.gift-card { flex:0 0 150px; scroll-snap-align:start; text-align:center; }
+@media (max-width:600px){ .gift-card{ flex:0 0 120px; } }
+.gift-thumb { position:relative; aspect-ratio:1; border-radius: var(--r-card); overflow:hidden; background:var(--ghost); margin-bottom:9px; transition: transform var(--t), box-shadow var(--t); }
+.gift-thumb img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+.gift-card:hover .gift-thumb { transform:translateY(-3px); box-shadow: var(--sh-md); }
+.gift-card:hover .gift-thumb img { transform:scale(1.06); }
+.gift-label { font-size:13px; font-weight:600; color:var(--text); }
 
 /* Price-gift chips */
 .price-gift-row { display:flex; gap:12px; overflow-x:auto; padding: 4px 0 6px; }
 .price-gift-row::-webkit-scrollbar{ height:4px; } .price-gift-row::-webkit-scrollbar-thumb{ background: var(--light); }
-.price-gift { flex-shrink:0; display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:150px; padding:18px 22px; background: var(--love-soft); border:1.5px solid transparent; border-radius: var(--r-card); transition: all var(--t); }
+.price-gift { flex-shrink:0; display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:148px; padding:16px 22px; background: var(--love-soft); border:1.5px solid transparent; border-radius: var(--r-card); transition: all var(--t); }
 .price-gift:hover { border-color: var(--love); background:#fff; }
 .price-gift .pg-amount { font-size:18px; font-weight:800; color: var(--love-deep); }
 .price-gift .pg-label { font-size:12px; color: var(--text); margin-top:3px; }
-
-/* love accent for section titles within campaign discovery */
-.camp-accent .section-title::after { content:''; }
 
 /* ===== PLP LISTING ===== */
 .plp { display:grid; grid-template-columns: 256px 1fr; gap: 28px; align-items:start; margin-top: 8px; }
 @media (max-width: 900px){ .plp{ grid-template-columns: 1fr; } }
 .plp-sidebar { position: sticky; top: 90px; align-self:start; }
+/* overlay is ALWAYS position:fixed so it never becomes a grid item (prevents layout break) */
+.plp-filter-overlay { position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:1001; opacity:0; pointer-events:none; transition:opacity var(--t); }
+.plp-filter-overlay.open { opacity:1; pointer-events:auto; }
+.plp-sidebar-close{ display:none; align-items:center; justify-content:center; width:34px; height:34px; font-size:20px; color:var(--text); background:none; border:none; cursor:pointer; }
 @media (max-width: 900px){
-  .plp{ grid-template-columns: 1fr; }
   .plp-sidebar{ position: fixed; top:0; left:-100%; bottom:0; width:88%; max-width:340px; background:#fff; z-index:1002; overflow-y:auto; padding:18px; box-shadow:0 0 40px rgba(0,0,0,.25); transition:left .3s cubic-bezier(.4,0,.2,1); }
   .plp-sidebar.open{ left:0; }
-  .plp-filter-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:1001; opacity:0; pointer-events:none; transition:opacity var(--t); }
-  .plp-filter-overlay.open{ opacity:1; pointer-events:auto; }
-  .plp-sidebar-close{ display:flex !important; }
+  .plp-sidebar-close{ display:flex; }
 }
-.plp-sidebar-close{ display:none; align-items:center; justify-content:center; width:34px; height:34px; font-size:20px; color:var(--text); background:none; border:none; cursor:pointer; }
-.plp-filter-head { display:flex; align-items:center; justify-content:space-between; padding-bottom:14px; margin-bottom:8px; border-bottom:2px solid var(--text); }
+.plp-filter-head { display:flex; align-items:center; justify-content:space-between; gap:10px; padding-bottom:14px; margin-bottom:8px; border-bottom:2px solid var(--text); }
 .plp-filter-head h3 { font-size:16px; font-weight:700; color: var(--text); }
 .plp-filter-head a { font-size:12px; color: var(--love); font-weight:600; }
 .facet { border-bottom: 1px solid var(--ghost); }
@@ -65,17 +86,14 @@
 .facet-opt .cnt { margin-left:auto; font-size:11.5px; color: var(--gray); }
 .facet-opt:hover { color: var(--love); }
 .facet-more { font-size:12px; color: var(--love); font-weight:600; cursor:pointer; padding:6px 0 2px; display:inline-block; }
-/* color swatches */
 .swatch-row { display:flex; flex-wrap:wrap; gap:9px; padding:6px 0; }
 .swatch { width:26px; height:26px; border-radius:50%; border:2px solid #fff; box-shadow: 0 0 0 1px var(--light); cursor:pointer; transition: transform var(--t); }
 .swatch:hover { transform: scale(1.12); }
-/* price range */
 .price-inputs { display:flex; align-items:center; gap:8px; padding:8px 0; }
 .price-inputs input { width:100%; padding:8px 10px; border:1px solid var(--light); border-radius:6px; font-size:12.5px; font-family:inherit; }
 .price-inputs span { color: var(--gray); }
 .price-apply { margin-top:8px; width:100%; padding:9px; background: var(--love); color:#fff; border:none; border-radius:6px; font-weight:700; font-size:12.5px; cursor:pointer; }
 
-/* Listing main */
 .plp-main { min-width:0; }
 .plp-toolbar { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 16px; background: var(--ghost); border-radius: var(--r-card); margin-bottom:18px; flex-wrap:wrap; }
 .plp-count { font-size:13.5px; color: var(--text); }
@@ -90,17 +108,19 @@
 @media (min-width:600px){ .plp-grid{ grid-template-columns: repeat(3, 1fr); } }
 @media (min-width:1100px){ .plp-grid{ grid-template-columns: repeat(4, 1fr); gap:16px; } }
 .plp-grid .product-card { flex:none; width:auto; }
-/* active filter chips */
 .active-filters { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
 .af-chip { display:inline-flex; align-items:center; gap:6px; padding:6px 12px; background: var(--love-soft); color: var(--love-deep); border-radius: var(--r-pill); font-size:12px; font-weight:600; }
 .af-chip button { background:none; border:none; color: var(--love-deep); cursor:pointer; font-size:14px; line-height:1; }
 .af-clear { font-size:12px; color: var(--gray); text-decoration:underline; cursor:pointer; align-self:center; }
-/* pagination */
 .plp-pagination { display:flex; align-items:center; justify-content:center; gap:6px; margin-top:32px; }
 .plp-pagination a { min-width:38px; height:38px; display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--light); border-radius:8px; font-size:13px; font-weight:600; color: var(--text); transition: all var(--t); }
 .plp-pagination a:hover { border-color: var(--love); color: var(--love); }
 .plp-pagination a.active { background: var(--love); color:#fff; border-color: var(--love); }
 .plp-pagination a.nav { padding:0 14px; }
+
+/* love-tinted section link */
+.section-link.love { color: var(--love); }
+.section-link.love:hover { color: var(--love-deep); }
 </style>
 
 <main class="container" role="main">
@@ -114,30 +134,107 @@
     </ol>
   </nav>
 
-  <!-- Campaign Hero -->
-  <section class="camp-hero" id="campHero" aria-label="Sevgililer Günü kampanyası">
-    <div class="camp-hero-content">
-      <span class="camp-hero-eyebrow">❤ 14 ŞUBAT'A ÖZEL</span>
-      <h1 class="camp-hero-title">Sevgililer Günü<br>Hediyeleri</h1>
-      <p class="camp-hero-sub">Sevdiklerinizi mutlu edecek özel seçkiler, takı, parfüm ve daha fazlasında %50'ye varan indirim fırsatlarıyla Özdilekteyim'de.</p>
-      <a href="#urunler" class="camp-hero-cta">Hediyeleri Keşfet →</a>
+  <!-- Campaign Hero SLIDER (4 slides) -->
+  <section class="camp-hero-slider" aria-label="Sevgililer Günü kampanyaları">
+    <div class="camp-hero-slides" id="campHeroSlides">
+      <div class="camp-hero-slide" style="background-image:url(img/campaign/hero-sevgililer.jpg)">
+        <div class="camp-hero-content">
+          <span class="camp-hero-eyebrow">❤ 14 ŞUBAT'A ÖZEL</span>
+          <h1 class="camp-hero-title">Sevgililer Günü<br>Hediyeleri</h1>
+          <p class="camp-hero-sub">Sevdiklerinizi mutlu edecek özel seçkilerde %50'ye varan indirim fırsatları.</p>
+          <a href="#urunler" class="camp-hero-cta">Hediyeleri Keşfet →</a>
+        </div>
+      </div>
+      <div class="camp-hero-slide" style="background-image:url(img/campaign/hero-2.jpg)">
+        <div class="camp-hero-content">
+          <span class="camp-hero-eyebrow">❤ TAKI &amp; MÜCEVHER</span>
+          <h2 class="camp-hero-title">Anlam Dolu<br>Takı Hediyeleri</h2>
+          <p class="camp-hero-sub">Kalpten gelen jestler için özel tasarım takı ve mücevher seçkisi.</p>
+          <a href="/sevgililer-gunu/taki" class="camp-hero-cta">Takıları İncele →</a>
+        </div>
+      </div>
+      <div class="camp-hero-slide" style="background-image:url(img/campaign/hero-3.jpg)">
+        <div class="camp-hero-content">
+          <span class="camp-hero-eyebrow">❤ İMZA KOKULAR</span>
+          <h2 class="camp-hero-title">Parfümde<br>%40'a Varan İndirim</h2>
+          <p class="camp-hero-sub">Sevgiliye unutulmaz bir koku armağan edin; seçkin parfüm markaları indirimde.</p>
+          <a href="/sevgililer-gunu/parfum" class="camp-hero-cta">Parfümleri Gör →</a>
+        </div>
+      </div>
+      <div class="camp-hero-slide" style="background-image:url(img/campaign/hero-4.jpg)">
+        <div class="camp-hero-content">
+          <span class="camp-hero-eyebrow">❤ SON GÜNLER</span>
+          <h2 class="camp-hero-title">Hediye Setlerinde<br>Süre Bitiyor</h2>
+          <p class="camp-hero-sub">14 Şubat'a özel hediye setlerini kaçırmayın, kısa süreli fırsatlarla.</p>
+          <a href="/sevgililer-gunu/hediye-seti" class="camp-hero-cta">Setleri Keşfet →</a>
+        </div>
+      </div>
+    </div>
+    <button class="camp-hero-nav prev" onclick="campHeroPrev()" aria-label="Önceki">‹</button>
+    <button class="camp-hero-nav next" onclick="campHeroNext()" aria-label="Sonraki">›</button>
+    <div class="camp-dots">
+      <button class="camp-dot active" onclick="campHeroGo(0)" aria-label="Slayt 1"></button>
+      <button class="camp-dot" onclick="campHeroGo(1)" aria-label="Slayt 2"></button>
+      <button class="camp-dot" onclick="campHeroGo(2)" aria-label="Slayt 3"></button>
+      <button class="camp-dot" onclick="campHeroGo(3)" aria-label="Slayt 4"></button>
     </div>
   </section>
 
-  <!-- KAMPANYA KATEGORİLERİ (Hediye tipleri) -->
-  <section class="section camp-accent" aria-label="Hediye kategorileri" style="margin-bottom:48px;">
-    <div class="section-head"><h2 class="section-title">Sevgiliye Hediye Kategorileri</h2></div>
-    <div class="gift-grid">
-      <a href="/sevgililer-gunu/taki" class="gift-tile"><img src="img/campaign/gift-taki.jpg" alt="Takı & Mücevher"><span class="gift-tile-label">Takı &amp; Mücevher</span></a>
-      <a href="/sevgililer-gunu/parfum" class="gift-tile"><img src="img/campaign/gift-parfum.jpg" alt="Parfüm"><span class="gift-tile-label">Parfüm</span></a>
-      <a href="/sevgililer-gunu/saat" class="gift-tile"><img src="img/campaign/gift-saat.jpg" alt="Saat"><span class="gift-tile-label">Saat</span></a>
-      <a href="/sevgililer-gunu/ic-giyim" class="gift-tile"><img src="img/campaign/gift-icgiyim.jpg" alt="İç Giyim"><span class="gift-tile-label">İç Giyim</span></a>
-      <a href="/sevgililer-gunu/hediye-seti" class="gift-tile"><img src="img/campaign/gift-hediye.jpg" alt="Hediye Setleri"><span class="gift-tile-label">Hediye Setleri</span></a>
-      <a href="/sevgililer-gunu/cikolata" class="gift-tile"><img src="img/campaign/gift-cikolata.jpg" alt="Çikolata & Sürpriz"><span class="gift-tile-label">Çikolata &amp; Sürpriz</span></a>
+  <!-- PERSONA: Kime hediye? -->
+  <section class="section" aria-label="Kime hediye alıyorsunuz" style="margin-bottom:48px;">
+    <div class="section-head"><h2 class="section-title">Kime Hediye Alıyorsunuz?</h2></div>
+    <div class="persona-row">
+      <a href="/sevgililer-gunu/kadina" class="persona-card">
+        <img src="img/campaign/persona-kadin.jpg" alt="Kadınlar için hediyeler">
+        <div class="persona-card-content">
+          <div class="persona-card-eyebrow">Ona Özel</div>
+          <div class="persona-card-title">Kadınlar İçin<br>Sevgililer Günü Hediyeleri</div>
+          <span class="persona-card-cta">Keşfet →</span>
+        </div>
+      </a>
+      <a href="/sevgililer-gunu/erkege" class="persona-card">
+        <img src="img/campaign/persona-erkek.jpg" alt="Erkekler için hediyeler">
+        <div class="persona-card-content">
+          <div class="persona-card-eyebrow">Ona Özel</div>
+          <div class="persona-card-title">Erkekler İçin<br>Sevgililer Günü Hediyeleri</div>
+          <span class="persona-card-cta">Keşfet →</span>
+        </div>
+      </a>
+      <a href="/sevgililer-gunu/ese" class="persona-card">
+        <img src="img/campaign/persona-es.jpg" alt="Eşe özel hediyeler">
+        <div class="persona-card-content">
+          <div class="persona-card-eyebrow">Çiftlere Özel</div>
+          <div class="persona-card-title">Eşe Özel<br>Sevgililer Günü Hediyeleri</div>
+          <span class="persona-card-cta">Keşfet →</span>
+        </div>
+      </a>
     </div>
   </section>
 
-  <!-- FİYATA GÖRE HEDİYE -->
+  <!-- HEDİYE KATEGORİLERİ (single-row slider, smaller cards) -->
+  <section class="section" aria-label="Hediye kategorileri" style="margin-bottom:48px;">
+    <div class="section-head">
+      <h2 class="section-title">Sevgiliye Hediye Kategorileri</h2>
+      <a href="/sevgililer-gunu/kategoriler" class="section-link love">Tümünü Gör →</a>
+    </div>
+    <div class="gift-slider-wrap">
+      <button class="carousel-nav carousel-nav-prev" onclick="scrollCarousel('giftSlider', -1)">‹</button>
+      <button class="carousel-nav carousel-nav-next" onclick="scrollCarousel('giftSlider', 1)">›</button>
+      <div class="gift-slider" id="giftSlider">
+        <a href="/sevgililer-gunu/taki" class="gift-card"><div class="gift-thumb"><img src="img/campaign/gift-taki.jpg" alt="Takı"></div><span class="gift-label">Takı &amp; Mücevher</span></a>
+        <a href="/sevgililer-gunu/parfum" class="gift-card"><div class="gift-thumb"><img src="img/campaign/gift-parfum.jpg" alt="Parfüm"></div><span class="gift-label">Parfüm</span></a>
+        <a href="/sevgililer-gunu/saat" class="gift-card"><div class="gift-thumb"><img src="img/campaign/gift-saat.jpg" alt="Saat"></div><span class="gift-label">Saat</span></a>
+        <a href="/sevgililer-gunu/ic-giyim" class="gift-card"><div class="gift-thumb"><img src="img/campaign/gift-icgiyim.jpg" alt="İç Giyim"></div><span class="gift-label">İç Giyim</span></a>
+        <a href="/sevgililer-gunu/hediye-seti" class="gift-card"><div class="gift-thumb"><img src="img/campaign/gift-hediye.jpg" alt="Hediye Setleri"></div><span class="gift-label">Hediye Setleri</span></a>
+        <a href="/sevgililer-gunu/cikolata" class="gift-card"><div class="gift-thumb"><img src="img/campaign/gift-cikolata.jpg" alt="Çikolata"></div><span class="gift-label">Çikolata &amp; Sürpriz</span></a>
+        <a href="/sevgililer-gunu/canta" class="gift-card"><div class="gift-thumb"><img src="img/7621235393670.jpg" alt="Çanta"></div><span class="gift-label">Çanta</span></a>
+        <a href="/sevgililer-gunu/ayakkabi" class="gift-card"><div class="gift-thumb"><img src="img/7617076323204.jpg" alt="Ayakkabı"></div><span class="gift-label">Ayakkabı</span></a>
+        <a href="/sevgililer-gunu/giyim" class="gift-card"><div class="gift-thumb"><img src="img/5715832867466.jpg" alt="Giyim"></div><span class="gift-label">Giyim</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BÜTÇE -->
   <section class="section" aria-label="Fiyata göre hediye" style="margin-bottom:48px;">
     <div class="section-head"><h2 class="section-title">Bütçene Göre Hediye Seç</h2></div>
     <div class="price-gift-row">
@@ -149,11 +246,11 @@
     </div>
   </section>
 
-  <!-- SEVGİLİLER GÜNÜ MARKALARI -->
+  <!-- MARKALAR -->
   <section class="section" aria-label="Sevgililer Günü markaları" style="margin-bottom:48px;">
     <div class="section-head">
       <h2 class="section-title">Sevgililer Gününde Öne Çıkan Markalar</h2>
-      <a href="/markalar" class="section-link">Tüm Markalar →</a>
+      <a href="/markalar" class="section-link love">Tüm Markalar →</a>
     </div>
     <div class="brand-carousel">
       <a href="/marka/guess" class="brand-card"><img src="img/brands/brand-guess.webp" alt="Guess"></a>
@@ -171,11 +268,11 @@
     </div>
   </section>
 
-  <!-- SEVGİLİLER GÜNÜNDE POPÜLER ÜRÜNLER (carousel) -->
+  <!-- POPÜLER ÜRÜNLER -->
   <section class="section" aria-label="Popüler ürünler" style="margin-bottom:56px;">
     <div class="section-head">
       <h2 class="section-title">Sevgililer Gününde Popüler Ürünler</h2>
-      <a href="#urunler" class="section-link">Tümünü Gör →</a>
+      <a href="#urunler" class="section-link love">Tümünü Gör →</a>
     </div>
     <div class="product-carousel-wrap">
       <button class="carousel-nav carousel-nav-prev" onclick="scrollCarousel('campPop', -1)">‹</button>
@@ -237,9 +334,10 @@
       <h2 class="section-title">Sevgililer Günü Tüm Ürünler</h2>
     </div>
 
+    <!-- overlay is OUTSIDE .plp grid (fixed-positioned) -->
+    <div class="plp-filter-overlay" id="plpFilterOverlay" onclick="togglePlpFilter()"></div>
+
     <div class="plp">
-      <!-- FILTER SIDEBAR -->
-      <div class="plp-filter-overlay" id="plpFilterOverlay" onclick="togglePlpFilter()"></div>
       <aside class="plp-sidebar" id="plpSidebar" aria-label="Filtreler">
         <div class="plp-filter-head">
           <h3>Filtreler</h3>
@@ -332,9 +430,7 @@
         </details>
       </aside>
 
-      <!-- LISTING MAIN -->
       <div class="plp-main">
-        <!-- Toolbar -->
         <div class="plp-toolbar">
           <div class="plp-count"><strong>842</strong> ürün listeleniyor</div>
           <div class="plp-toolbar-right">
@@ -354,109 +450,83 @@
           </div>
         </div>
 
-        <!-- Active filter chips -->
         <div class="active-filters">
           <span class="af-chip">Sevgililer Günü <button aria-label="Kaldır">✕</button></span>
           <span class="af-clear">Tümünü Temizle</span>
         </div>
 
-        <!-- Product grid -->
         <div class="plp-grid">
           <a href="#" class="product-card">
             <div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/7621235393670.jpg" alt="Guess Çanta"></div>
-            <div class="product-brand">Guess</div>
-            <div class="product-title">Dita El Çantası Kahverengi</div>
+            <div class="product-brand">Guess</div><div class="product-title">Dita El Çantası Kahverengi</div>
             <div class="product-prices"><span class="list-price">9.200,00 TL</span><span class="promo-price">6.440,00 TL</span></div>
-            <div class="promo-badge">Sepette %30 İndirim</div>
-            <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
+            <div class="promo-badge">Sepette %30 İndirim</div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
           </a>
           <a href="#" class="product-card">
             <div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/8721221789896.jpg" alt="Tommy Ceket"></div>
-            <div class="product-brand">Tommy Hilfiger</div>
-            <div class="product-title">Kadın Ceket WW0WW47998 Mavi</div>
+            <div class="product-brand">Tommy Hilfiger</div><div class="product-title">Kadın Ceket WW0WW47998 Mavi</div>
             <div class="product-prices"><span class="list-price">12.069,00 TL</span><span class="promo-price">8.448,30 TL</span></div>
-            <div class="promo-badge">Sepette %30 İndirim</div>
-            <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
+            <div class="promo-badge">Sepette %30 İndirim</div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
           </a>
           <a href="#" class="product-card">
             <div class="product-img-wrap"><button class="product-fav">♡</button><img src="img/8683559844787.jpg" alt="İpekyol Gömlek"></div>
-            <div class="product-brand">İpekyol</div>
-            <div class="product-title">Kadın Gömlek IW6250025096 Lacivert</div>
-            <div class="product-prices"><span class="promo-price">2.499,99 TL</span></div>
-            <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
+            <div class="product-brand">İpekyol</div><div class="product-title">Kadın Gömlek IW6250025096 Lacivert</div>
+            <div class="product-prices"><span class="promo-price">2.499,99 TL</span></div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
           </a>
           <a href="#" class="product-card">
             <div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/8721221760345.jpg" alt="Tommy El Çantası"></div>
-            <div class="product-brand">Tommy Hilfiger</div>
-            <div class="product-title">El Çantası AW0AW18122R07 Kahve</div>
+            <div class="product-brand">Tommy Hilfiger</div><div class="product-title">El Çantası AW0AW18122R07 Kahve</div>
             <div class="product-prices"><span class="list-price">8.919,00 TL</span><span class="promo-price">6.243,30 TL</span></div>
-            <div class="promo-badge">Sepette %30 İndirim</div>
-            <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
+            <div class="promo-badge">Sepette %30 İndirim</div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
           </a>
           <a href="#" class="product-card">
             <div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/5715866602927.jpg" alt="Only Tişört"></div>
-            <div class="product-brand">Only</div>
-            <div class="product-title">Kadın Tişört 15368322 Beyaz</div>
+            <div class="product-brand">Only</div><div class="product-title">Kadın Tişört 15368322 Beyaz</div>
             <div class="product-prices"><span class="list-price">849,99 TL</span><span class="promo-price">594,99 TL</span></div>
-            <div class="promo-badge">Sepette %30 İndirim</div>
-            <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
+            <div class="promo-badge">Sepette %30 İndirim</div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
           </a>
           <a href="#" class="product-card">
             <div class="product-img-wrap"><span class="product-badge">YENİ</span><button class="product-fav">♡</button><img src="img/8721187024376.jpg" alt="CK Bot"></div>
-            <div class="product-brand">Calvin Klein Jeans</div>
-            <div class="product-title">Mid Rainboot Runner Bot Siyah</div>
-            <div class="product-prices"><span class="promo-price">5.999,00 TL</span></div>
-            <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
+            <div class="product-brand">Calvin Klein Jeans</div><div class="product-title">Mid Rainboot Runner Bot Siyah</div>
+            <div class="product-prices"><span class="promo-price">5.999,00 TL</span></div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
           </a>
           <a href="#" class="product-card">
             <div class="product-img-wrap"><button class="product-fav">♡</button><img src="img/8682233116349.jpg" alt="UCB Çanta"></div>
-            <div class="product-brand">UCB</div>
-            <div class="product-title">Kadın Çanta BNT_1102 Lacivert</div>
-            <div class="product-prices"><span class="promo-price">2.488,00 TL</span></div>
-            <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
+            <div class="product-brand">UCB</div><div class="product-title">Kadın Çanta BNT_1102 Lacivert</div>
+            <div class="product-prices"><span class="promo-price">2.488,00 TL</span></div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
           </a>
           <a href="#" class="product-card">
             <div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/8721221636596.jpg" alt="Tommy Jeans Ceket"></div>
-            <div class="product-brand">Tommy Jeans</div>
-            <div class="product-title">Kadın Ceket DW0DW22055 Mavi</div>
+            <div class="product-brand">Tommy Jeans</div><div class="product-title">Kadın Ceket DW0DW22055 Mavi</div>
             <div class="product-prices"><span class="list-price">7.349,00 TL</span><span class="promo-price">5.144,30 TL</span></div>
-            <div class="promo-badge">Sepette %30 İndirim</div>
-            <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
+            <div class="promo-badge">Sepette %30 İndirim</div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
           </a>
           <a href="#" class="product-card">
             <div class="product-img-wrap"><span class="product-badge">%20</span><button class="product-fav">♡</button><img src="img/8683031012291.jpg" alt="Skechers Ayakkabı"></div>
-            <div class="product-brand">Skechers</div>
-            <div class="product-title">Skech Lite Pro Slip Ins Lacivert</div>
+            <div class="product-brand">Skechers</div><div class="product-title">Skech Lite Pro Slip Ins Lacivert</div>
             <div class="product-prices"><span class="list-price">4.999,00 TL</span><span class="promo-price">3.999,20 TL</span></div>
-            <div class="promo-badge">Sepette %20 İndirim</div>
-            <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
+            <div class="promo-badge">Sepette %20 İndirim</div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
           </a>
           <a href="#" class="product-card">
             <div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/5715101613329.jpg" alt="Only Kazak"></div>
-            <div class="product-brand">Only</div>
-            <div class="product-title">Kadın Kazak 15233173 Beyaz</div>
+            <div class="product-brand">Only</div><div class="product-title">Kadın Kazak 15233173 Beyaz</div>
             <div class="product-prices"><span class="list-price">1.399,99 TL</span><span class="promo-price">979,99 TL</span></div>
-            <div class="promo-badge">Sepette %30 İndirim</div>
-            <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
+            <div class="promo-badge">Sepette %30 İndirim</div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
           </a>
           <a href="#" class="product-card">
             <div class="product-img-wrap"><span class="product-badge">YENİ</span><button class="product-fav">♡</button><img src="img/7617076323204.jpg" alt="Guess Ayakkabı"></div>
-            <div class="product-brand">Guess</div>
-            <div class="product-title">Kadın Ayakkabı FL7MIC Beyaz</div>
+            <div class="product-brand">Guess</div><div class="product-title">Kadın Ayakkabı FL7MIC Beyaz</div>
             <div class="product-prices"><span class="list-price">7.200,00 TL</span><span class="promo-price">5.040,00 TL</span></div>
             <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
           </a>
           <a href="#" class="product-card">
             <div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/5715832867466.jpg" alt="Only Ceket"></div>
-            <div class="product-brand">Only</div>
-            <div class="product-title">Kadın Ceket 15361428 Taş</div>
+            <div class="product-brand">Only</div><div class="product-title">Kadın Ceket 15361428 Taş</div>
             <div class="product-prices"><span class="list-price">3.499,99 TL</span><span class="promo-price">2.449,99 TL</span></div>
-            <div class="promo-badge">Sepette %30 İndirim</div>
-            <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
+            <div class="promo-badge">Sepette %30 İndirim</div><div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
           </a>
         </div>
 
-        <!-- Pagination -->
         <nav class="plp-pagination" aria-label="Sayfalama">
           <a href="#" class="nav">‹ Önceki</a>
           <a href="#" class="active">1</a>
@@ -473,7 +543,7 @@
   <!-- SEO content -->
   <section class="seo-content" style="padding-top:0;">
     <h2 class="seo-main-title">Sevgililer Günü Hediyeleri</h2>
-    <p class="seo-lead">14 Şubat Sevgililer Günü'nde sevdiklerinizi mutlu edecek özel hediyeler Özdilekteyim'de. <a href="/sevgililer-gunu/taki">Takı ve mücevher</a> seçeneklerinden <a href="/sevgililer-gunu/parfum">parfüm</a> setlerine, <a href="/sevgililer-gunu/saat">saat</a> modellerinden <a href="/sevgililer-gunu/ic-giyim">iç giyim</a> ürünlerine kadar geniş ürün yelpazesinde sevgiliye en güzel hediyeyi bulabilirsiniz. Guess, Calvin Klein, Tommy Hilfiger gibi seçkin markaların ürünlerinde Sevgililer Günü'ne özel %50'ye varan indirim fırsatlarını kaçırmayın.</p>
+    <p class="seo-lead">14 Şubat Sevgililer Günü'nde sevdiklerinizi mutlu edecek özel hediyeler Özdilekteyim'de. <a href="/sevgililer-gunu/taki">Takı ve mücevher</a> seçeneklerinden <a href="/sevgililer-gunu/parfum">parfüm</a> setlerine, <a href="/sevgililer-gunu/saat">saat</a> modellerinden <a href="/sevgililer-gunu/ic-giyim">iç giyim</a> ürünlerine kadar geniş ürün yelpazesinde sevgiliye en güzel hediyeyi bulabilirsiniz. <a href="/sevgililer-gunu/kadina">Kadınlar için</a>, <a href="/sevgililer-gunu/erkege">erkekler için</a> ve <a href="/sevgililer-gunu/ese">eşe özel</a> hediye seçkilerimizle herkese uygun bir armağan var. Guess, Calvin Klein, Tommy Hilfiger gibi seçkin markaların ürünlerinde Sevgililer Günü'ne özel %50'ye varan indirim fırsatlarını kaçırmayın.</p>
   </section>
 
 </main>

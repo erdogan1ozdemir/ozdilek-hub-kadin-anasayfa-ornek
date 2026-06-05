@@ -1,100 +1,52 @@
 <style>
 /* ===== 404 PAGE SPECIFIC ===== */
-.err-hero { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; padding: 56px 0 60px; }
-@media (max-width: 860px){ .err-hero{ grid-template-columns: 1fr; gap: 28px; text-align: center; padding: 36px 0 44px; } }
-.err-badge { display:inline-flex; align-items:center; gap:8px; background: var(--primary-light); color: var(--primary-accent); font-weight:700; font-size:12.5px; padding:7px 15px; border-radius: var(--r-pill); margin-bottom: 18px; letter-spacing:0.3px; }
-.err-badge span.dot { width:7px; height:7px; border-radius:50%; background: var(--primary); }
-.err-title { font-size: 30px; font-weight:700; line-height:1.2; color: var(--text); margin-bottom: 14px; }
-@media (min-width:768px){ .err-title{ font-size: 40px; } }
-.err-desc { font-size: 15px; color: var(--gray); line-height:1.65; margin-bottom: 26px; max-width: 480px; }
-@media (max-width:860px){ .err-desc{ margin: 0 auto 26px; } }
-.err-search { position:relative; max-width:480px; margin-bottom:24px; }
-@media (max-width:860px){ .err-search{ margin: 0 auto 24px; } }
-.err-search input { width:100%; padding:14px 110px 14px 48px; border:1.5px solid var(--light); border-radius: var(--r-pill); font-family:inherit; font-size:14px; color: var(--text); }
-.err-search input:focus { outline:none; border-color: var(--primary); }
-.err-search .ico { position:absolute; left:18px; top:50%; transform:translateY(-50%); width:20px; height:20px; color:var(--gray); }
-.err-search button { position:absolute; right:5px; top:5px; bottom:5px; padding:0 24px; background:var(--primary); color:#fff; border:none; border-radius:var(--r-pill); font-weight:700; font-size:13px; cursor:pointer; transition: background var(--t); }
-.err-search button:hover { background: var(--primary-accent); }
-.err-actions { display:flex; gap:12px; flex-wrap:wrap; }
-@media (max-width:860px){ .err-actions{ justify-content:center; } }
-.err-cta { display:inline-flex; align-items:center; gap:8px; padding:13px 26px; border-radius: var(--r-pill); font-weight:700; font-size:14px; transition: all var(--t); }
+.err-top { display:flex; flex-direction:column; align-items:center; text-align:center; padding: 44px 0 36px; border-bottom:1px solid var(--ghost); margin-bottom:40px; }
+.err-badge { display:inline-flex; align-items:center; gap:8px; background: var(--primary-light); color: var(--primary-accent); font-weight:700; font-size:12px; padding:6px 14px; border-radius: var(--r-pill); margin-bottom:16px; letter-spacing:0.4px; }
+.err-badge span.dot { width:6px; height:6px; border-radius:50%; background: var(--primary); }
+.err-title { font-size: clamp(24px, 3.4vw, 34px); font-weight:700; line-height:1.2; color: var(--text); margin-bottom:12px; }
+.err-desc { font-size: 14.5px; color: var(--gray); line-height:1.6; margin-bottom:22px; max-width: 540px; }
+.err-actions { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+.err-cta { display:inline-flex; align-items:center; gap:8px; padding:12px 26px; border-radius: var(--r-pill); font-weight:700; font-size:14px; transition: all var(--t); }
 .err-cta svg { width:18px; height:18px; }
 .err-cta.primary { background: var(--primary); color:#fff; }
 .err-cta.primary:hover { background: var(--primary-accent); color:#fff; transform: translateY(-2px); }
 .err-cta.ghost { background:#fff; color: var(--text); border:1.5px solid var(--light); }
 .err-cta.ghost:hover { border-color: var(--primary); color: var(--primary); }
-/* visual */
-.err-visual { position:relative; display:flex; align-items:center; justify-content:center; min-height: 280px; }
-.err-blob { position:absolute; width:340px; height:340px; background: radial-gradient(circle at 40% 35%, #FFF1E8 0%, #FFE3D8 60%, transparent 72%); border-radius:50%; z-index:0; }
-.err-404 { position:relative; z-index:1; font-family: var(--ff); font-weight:800; font-size: clamp(110px, 16vw, 190px); line-height:1; color: var(--text); letter-spacing:-6px; display:flex; align-items:center; gap:4px; }
-.err-404 .digit { color: var(--text); }
-.err-404 .ozd-o { position:relative; display:inline-flex; align-items:center; justify-content:center; width: clamp(118px, 16vw, 188px); height: clamp(118px, 16vw, 188px); }
-.err-404 .ozd-o .ring { width:80%; height:80%; border-radius:50%; border: clamp(14px, 2vw, 24px) solid var(--primary); box-sizing:border-box; }
-.err-404 .ozd-o .umlaut { position:absolute; top: 4%; left:50%; transform:translateX(-50%); display:flex; gap: clamp(10px,1.4vw,16px); }
-.err-404 .ozd-o .umlaut i { width: clamp(11px,1.4vw,16px); height: clamp(11px,1.4vw,16px); border-radius:50%; background: var(--primary); display:block; }
-.err-help { margin-top:14px; font-size:13px; color: var(--gray); }
-.err-help a { color: var(--primary); font-weight:600; }
 
-/* compact category grid for 404 */
-.err-cat-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
-@media (min-width:600px){ .err-cat-grid{ grid-template-columns: repeat(3, 1fr); } }
-@media (min-width:1024px){ .err-cat-grid{ grid-template-columns: repeat(6, 1fr); gap:16px; } }
-.err-cat { position:relative; display:block; border-radius: var(--r-card); overflow:hidden; aspect-ratio: 1; transition: transform var(--t), box-shadow var(--t); }
-.err-cat:hover { transform: translateY(-4px); box-shadow: var(--sh-lg); }
-.err-cat img { width:100%; height:100%; object-fit:cover; transition: transform .5s ease; }
-.err-cat:hover img { transform: scale(1.06); }
-.err-cat-label { position:absolute; left:0; right:0; bottom:0; padding:12px 10px; background: linear-gradient(transparent, rgba(0,0,0,.72) 85%); color:#fff; font-size:13px; font-weight:700; text-align:center; }
-.err-section-sep { height:1px; background: var(--ghost); margin: 8px 0 48px; }
+/* category subcategory carousels */
+.subcat-section { margin-bottom: 40px; }
+.subcat-row { display:flex; gap:14px; overflow-x:auto; padding:4px 2px 12px; scroll-snap-type:x mandatory; }
+.subcat-row::-webkit-scrollbar{ height:4px; } .subcat-row::-webkit-scrollbar-thumb{ background:var(--light); border-radius:2px; }
+.subcat-card { flex:0 0 128px; scroll-snap-align:start; text-align:center; }
+@media (max-width:600px){ .subcat-card{ flex:0 0 110px; } }
+.subcat-thumb { aspect-ratio:1; border-radius:var(--r-card); overflow:hidden; background:var(--ghost); margin-bottom:8px; transition:transform var(--t),box-shadow var(--t); }
+.subcat-thumb img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+.subcat-card:hover .subcat-thumb { transform:translateY(-3px); box-shadow:var(--sh-md); }
+.subcat-card:hover .subcat-thumb img { transform:scale(1.06); }
+.subcat-label { font-size:12.5px; font-weight:600; color:var(--text); line-height:1.25; }
 </style>
 
 <main class="container" role="main">
 
-  <!-- 404 HERO -->
-  <section class="err-hero" aria-label="Sayfa bulunamadı">
-    <div class="err-left">
-      <span class="err-badge"><span class="dot"></span>404 · SAYFA BULUNAMADI</span>
-      <h1 class="err-title">Aradığınız sayfaya<br>ulaşamadık.</h1>
-      <p class="err-desc">Aradığınız sayfa kaldırılmış, taşınmış ya da adres yanlış yazılmış olabilir. Aşağıdaki kategori ve ürünlerden gezinmeye devam edebilir veya arama yaparak istediğinize hızlıca ulaşabilirsiniz.</p>
-      <form class="err-search" role="search">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="search" placeholder="Ürün, kategori veya marka arayınız" aria-label="Arama">
-        <button type="submit">ARA</button>
-      </form>
-      <div class="err-actions">
-        <a href="/" class="err-cta primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          Ana Sayfaya Dön
-        </a>
-        <a href="/kampanyalar" class="err-cta ghost">Kampanyaları İncele</a>
-      </div>
-    </div>
-    <div class="err-visual" aria-hidden="true">
-      <div class="err-blob"></div>
-      <div class="err-404">
-        <span class="digit">4</span>
-        <span class="ozd-o"><span class="ring"></span><span class="umlaut"><i></i><i></i></span></span>
-        <span class="digit">4</span>
-      </div>
+  <!-- COMPACT 404 TOP -->
+  <section class="err-top" aria-label="Sayfa bulunamadı">
+    <span class="err-badge"><span class="dot"></span>404 · Sayfa Bulunamadı</span>
+    <h1 class="err-title">Aradığınız sayfaya ulaşamadık.</h1>
+    <p class="err-desc">Aradığınız sayfa kaldırılmış, taşınmış ya da adres yanlış yazılmış olabilir. Aşağıdaki kategorilerden gezinmeye devam edebilir veya üstteki arama çubuğundan istediğinize ulaşabilirsiniz.</p>
+    <div class="err-actions">
+      <a href="/" class="err-cta primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Ana Sayfaya Dön
+      </a>
+      <a href="/kampanyalar" class="err-cta ghost">Kampanyaları İncele</a>
     </div>
   </section>
 
-  <div class="err-section-sep"></div>
-
-  <!-- KATEGORİLER -->
-  <section class="section" aria-label="Kategoriler" style="margin-bottom:48px;">
-    <div class="section-head"><h2 class="section-title">Kategorilere Göz Atın</h2></div>
-    <div class="err-cat-grid">
-      <a href="/kadin" class="err-cat"><img src="img/p404/cat-kadin.jpg" alt="Kadın"><span class="err-cat-label">Kadın</span></a>
-      <a href="/erkek" class="err-cat"><img src="img/p404/cat-erkek.jpg" alt="Erkek"><span class="err-cat-label">Erkek</span></a>
-      <a href="/cocuk" class="err-cat"><img src="img/p404/cat-cocuk.jpg" alt="Çocuk"><span class="err-cat-label">Çocuk</span></a>
-      <a href="/ayakkabi" class="err-cat"><img src="img/p404/cat-ayakkabi.jpg" alt="Ayakkabı"><span class="err-cat-label">Ayakkabı</span></a>
-      <a href="/ev-tekstili" class="err-cat"><img src="img/p404/cat-evtekstili.jpg" alt="Ev Tekstili"><span class="err-cat-label">Ev Tekstili</span></a>
-      <a href="/kampanyalar" class="err-cat"><img src="img/p404/cat-kampanya.jpg" alt="Kampanyalar"><span class="err-cat-label">Kampanyalar</span></a>
-    </div>
-  </section>
+  <!-- CATEGORY SUBCATEGORY CAROUSELS (Python-generated) -->
+  <!--CATEGORY_CAROUSELS-->
 
   <!-- POPÜLER MARKALAR -->
-  <section class="section" aria-label="Popüler markalar" style="margin-bottom:48px;">
+  <section class="section" aria-label="Popüler markalar" style="margin-bottom:44px;">
     <div class="section-head">
       <h2 class="section-title">Popüler Markalar</h2>
       <a href="/markalar" class="section-link">Tüm Markalar →</a>
@@ -116,82 +68,6 @@
       <a href="/marka/caterpillar" class="brand-card"><div class="brand-card-text">CAT</div></a>
       <a href="/marka/only" class="brand-card"><div class="brand-card-text">Only</div></a>
       <a href="/marka/mavi" class="brand-card"><div class="brand-card-text">Mavi</div></a>
-    </div>
-  </section>
-
-  <!-- BUNLAR İLGİNİZİ ÇEKEBİLİR -->
-  <section class="section" aria-label="Önerilen ürünler" style="margin-bottom:48px;">
-    <div class="section-head">
-      <h2 class="section-title">Bunlar İlginizi Çekebilir</h2>
-      <a href="/kampanyalar" class="section-link">Tüm Fırsatlar →</a>
-    </div>
-    <div class="product-carousel-wrap">
-      <button class="carousel-nav carousel-nav-prev" onclick="scrollCarousel('p404rec', -1)">‹</button>
-      <button class="carousel-nav carousel-nav-next" onclick="scrollCarousel('p404rec', 1)">›</button>
-      <div class="product-carousel" id="p404rec">
-        <a href="#" class="product-card">
-          <div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/5715866602927.jpg" alt="Only Tişört"></div>
-          <div class="product-brand">Only</div>
-          <div class="product-title">Kadın Tişört 15368322 Beyaz</div>
-          <div class="product-prices"><span class="list-price">849,99 TL</span><span class="promo-price">594,99 TL</span></div>
-          <div class="promo-badge">Sepette %30 İndirim</div>
-          <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
-        </a>
-        <a href="#" class="product-card">
-          <div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/8721221789896.jpg" alt="Tommy Ceket"></div>
-          <div class="product-brand">Tommy Hilfiger</div>
-          <div class="product-title">Kadın Ceket WW0WW47998 Mavi</div>
-          <div class="product-prices"><span class="list-price">12.069,00 TL</span><span class="promo-price">8.448,30 TL</span></div>
-          <div class="promo-badge">Sepette %30 İndirim</div>
-          <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
-        </a>
-        <a href="#" class="product-card">
-          <div class="product-img-wrap"><span class="product-badge">%20</span><button class="product-fav">♡</button><img src="img/8683031012291.jpg" alt="Skechers Ayakkabı"></div>
-          <div class="product-brand">Skechers</div>
-          <div class="product-title">Skech Lite Pro Slip Ins Lacivert</div>
-          <div class="product-prices"><span class="list-price">4.999,00 TL</span><span class="promo-price">3.999,20 TL</span></div>
-          <div class="promo-badge">Sepette %20 İndirim</div>
-          <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
-        </a>
-        <a href="#" class="product-card">
-          <div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/7621235393670.jpg" alt="Guess Çanta"></div>
-          <div class="product-brand">Guess</div>
-          <div class="product-title">Dita El Çantası Kahverengi</div>
-          <div class="product-prices"><span class="list-price">9.200,00 TL</span><span class="promo-price">6.440,00 TL</span></div>
-          <div class="promo-badge">Sepette %30 İndirim</div>
-          <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
-        </a>
-        <a href="#" class="product-card">
-          <div class="product-img-wrap"><span class="product-badge">%30</span><button class="product-fav">♡</button><img src="img/5715101613329.jpg" alt="Only Kazak"></div>
-          <div class="product-brand">Only</div>
-          <div class="product-title">Kadın Kazak 15233173 Beyaz</div>
-          <div class="product-prices"><span class="list-price">1.399,99 TL</span><span class="promo-price">979,99 TL</span></div>
-          <div class="promo-badge">Sepette %30 İndirim</div>
-          <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
-        </a>
-        <a href="#" class="product-card">
-          <div class="product-img-wrap"><span class="product-badge">%50</span><button class="product-fav">♡</button><img src="img/9900000009403.jpg" alt="Caterpillar Bot"></div>
-          <div class="product-brand">Caterpillar</div>
-          <div class="product-title">Kadın Bot Colorado Z Sarı</div>
-          <div class="product-prices"><span class="list-price">5.499,00 TL</span><span class="promo-price">2.749,50 TL</span></div>
-          <div class="promo-badge">Sepette %50 İndirim</div>
-          <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
-        </a>
-        <a href="#" class="product-card">
-          <div class="product-img-wrap"><button class="product-fav">♡</button><img src="img/8683559844787.jpg" alt="İpekyol Gömlek"></div>
-          <div class="product-brand">İpekyol</div>
-          <div class="product-title">Kadın Gömlek IW6250025096 Lacivert</div>
-          <div class="product-prices"><span class="promo-price">2.499,99 TL</span></div>
-          <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
-        </a>
-        <a href="#" class="product-card">
-          <div class="product-img-wrap"><span class="product-badge">YENİ</span><button class="product-fav">♡</button><img src="img/8721187024376.jpg" alt="CK Bot"></div>
-          <div class="product-brand">Calvin Klein Jeans</div>
-          <div class="product-title">Mid Rainboot Runner Bot Siyah</div>
-          <div class="product-prices"><span class="promo-price">5.999,00 TL</span></div>
-          <div class="add-cart-btn-row"><span class="add-cart-btn">+</span></div>
-        </a>
-      </div>
     </div>
   </section>
 

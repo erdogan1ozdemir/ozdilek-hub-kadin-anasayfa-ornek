@@ -81,6 +81,13 @@ Canlı 404 sayfası tarandı. Kritik eksiklikler:
 - "En çok aranan kategoriler" (dinamik, GA4 verisinden)
 - Aranan terim 404 URL'inden çıkarılıp arama kutusuna otomatik doldurulabilir (`/kadin-elbisesi` → arama: "kadın elbisesi")
 
+### REVİZYON NOTU (v2) — Kategori Bazlı Yapı
+İlk versiyondaki büyük "404" görseli + sayfa içi arama kutusu kaldırıldı (arama zaten header'da var, görsel gereksiz yer kaplıyordu). Yeni yapı **kategori bazlı keşif** odaklı:
+- **Kompakt üst:** Küçük "404 · Sayfa Bulunamadı" rozeti (404 ifadesi yalnızca 1 kez, küçük) + tek satır mesaj + 2 CTA. Büyük grafik yok.
+- **8 kategori carousel'ı:** Her ana kategori (Kadın, Erkek, Çocuk, Ayakkabı, Spor & Outdoor, Ev & Yaşam, Parfüm & Kozmetik, Kampanyalar) kendi başlığı altında, sağa kaydırılabilir **alt kategori kartları** (küçük görsel + etiket) sunar. Kullanıcı hangi reyona gitmek isterse o kategorinin alt kırılımına tek tıkla ulaşır.
+- Alt kategori kartları küçük (~128px) tutuldu — görsel alan küçük, daha fazla component.
+- Her carousel'ın "Tümünü Gör" linki → ilgili kategori hub'ına bağlanır; alt kategori kartları → alt PLP'ye.
+
 ---
 
 ## 2. KAMPANYA SAYFASI (Sevgililer Günü) — Metodoloji
@@ -131,6 +138,13 @@ Evergreen kampanya = **keşif (üst) + listeleme (alt)** hibriti. Üstte kampany
 - **Sosyal kanıt** ("Popüler ürünler") = belirsizlik azaltır.
 - **Geri sayım** (opsiyonel): "Sevgililer Günü'ne X gün" sayacı aciliyet yaratır (sezon aktifken).
 - **Hediye paketleme** rozeti (opsiyonel): ürün kartında "Hediye paketi seçeneği" ikonu.
+
+### REVİZYON NOTU (v2) — Kampanya Sayfası Zenginleştirme
+- **Hero artık slider** (4 slide): Ana kampanya + Takı + Parfüm + Hediye Seti temalı banner'lar otomatik döner. Özel günlerde birden fazla alt-tema vurgulanabilir.
+- **Persona bölümü (YENİ):** "Kime Hediye Alıyorsunuz?" — 3 büyük konsept kart: **Kadınlar İçin**, **Erkekler İçin**, **Eşe Özel** Sevgililer Günü hediyeleri. Her biri ilgili filtrelenmiş listeye (`/sevgililer-gunu/kadina` vb.) yönlendirir. Hediye alışverişinde en kritik karar (kime?) en üste taşındı.
+- **Hediye kategorileri artık tek sıra slider** (sağa kaydırılabilir), daha küçük kartlarla — daha fazla kategori sığar (9 kategori), görsel alan küçültüldü.
+- **Filtre layout bug'ı giderildi:** Mobil filtre overlay'i grid'in 3. elemanı olarak layout'u bozuyordu; `position:fixed` ile grid akışından çıkarılarak düzeltildi. Sol filtre artık 256px kolonda düzgün, ürünler 4 kolonlu grid'de.
+- **Özel gün esnekliği:** Bu yapı her özel güne uyarlanırken hero slider'a 3-4 alt-tema, persona bölümüne ilgili hedef kitleler (Anneler Günü → "Anneye Özel" / "Anneanne & Babaanneye"; Yılbaşı → "Sevgiliye" / "Kendine" / "Ofis Arkadaşına") eklenebilir.
 
 ### Diğer Evergreen Kampanyalara Replikasyon
 Aynı şablon (üst keşif + alt PLP) şunlara kopyalanabilir:
