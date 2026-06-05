@@ -32,7 +32,7 @@
 /* editorial discovery cards (mizansen variety) */
 .disc-row { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
 @media(min-width:768px){ .disc-row{ grid-template-columns:repeat(4,1fr); gap:16px; } }
-.disc-card { position:relative; aspect-ratio:4/3; border-radius:var(--r-card); overflow:hidden; display:flex; align-items:flex-end; padding:18px; color:#fff; background:var(--ghost); transition:transform var(--t), box-shadow var(--t); }
+.disc-card { position:relative; aspect-ratio:3/4; border-radius:var(--r-card); overflow:hidden; display:flex; align-items:flex-end; padding:18px; color:#fff; background:var(--ghost); transition:transform var(--t), box-shadow var(--t); }
 .disc-card:hover{ transform:translateY(-3px); box-shadow:var(--sh-lg); }
 .disc-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; transition:transform .5s ease; }
 .disc-card:hover .disc-bg{ transform:scale(1.06); }
@@ -73,27 +73,27 @@
 
   <!-- KOLEKSİYONLARI KEŞFET (editorial / mizansen variety) -->
   <section class="section" aria-label="Öne çıkan sayfalar" style="margin-bottom:44px;">
-    <div class="section-head"><h2 class="section-title">Keşfetmeye Devam Edin</h2><a href="/kategoriler" class="section-link">Tüm Dünyalar →</a></div>
+    <div class="section-head"><h2 class="section-title">Keşfetmeye Devam Edin</h2><a href="/koleksiyonlar" class="section-link">Tüm Koleksiyonlar →</a></div>
     <div class="disc-row">
-      <a href="/yeni-sezon" class="disc-card">
-        <img class="disc-bg" src="img/p404/edit-moda.jpg" alt="Yeni sezon moda trendleri">
+      <a href="/koleksiyon/ofis-sikligi" class="disc-card">
+        <img class="disc-bg" src="img/styles/style-ofis-chic.jpg" alt="Ofis şıklığı, blazer ve iş hayatı stili">
         <span class="disc-accent" style="background:#ff6c0c;"></span>
-        <div class="disc-content"><span class="disc-eyebrow">Bahar / Yaz '26</span><div class="disc-title">Yeni Sezon Trendleri</div><p class="disc-desc">Sezonun öne çıkan parçaları ve trend renkleri</p><span class="disc-cta">Keşfet →</span></div>
+        <div class="disc-content"><span class="disc-eyebrow">İş Hayatı</span><div class="disc-title">Ofis Şıklığı</div><span class="disc-cta">Keşfet →</span></div>
       </a>
-      <a href="/ev-yasam" class="disc-card">
-        <img class="disc-bg" src="img/p404/edit-ev.jpg" alt="Ev ve yaşam, ev tekstili">
-        <span class="disc-accent" style="background:#3bb38f;"></span>
-        <div class="disc-content"><span class="disc-eyebrow">Özdilek Home</span><div class="disc-title">Ev &amp; Yaşam Dünyası</div><p class="disc-desc">Nevresim, havlu ve dekorasyonda konfor</p><span class="disc-cta">Keşfet →</span></div>
-      </a>
-      <a href="/spor-outdoor" class="disc-card">
-        <img class="disc-bg" src="img/p404/edit-spor.jpg" alt="Spor ve outdoor, aktif yaşam">
-        <span class="disc-accent" style="background:#2f80ed;"></span>
-        <div class="disc-content"><span class="disc-eyebrow">Aktif Yaşam</span><div class="disc-title">Spor &amp; Outdoor</div><p class="disc-desc">Koşu, fitness ve outdoor ekipmanları</p><span class="disc-cta">İncele →</span></div>
-      </a>
-      <a href="/parfum-kozmetik" class="disc-card">
-        <img class="disc-bg" src="img/p404/edit-kozmetik.jpg" alt="Kozmetik ve güzellik ürünleri">
+      <a href="/koleksiyon/davet-soz" class="disc-card">
+        <img class="disc-bg" src="img/styles/style-davet.jpg" alt="Davet ve söz, abiye stili">
         <span class="disc-accent" style="background:#c0398a;"></span>
-        <div class="disc-content"><span class="disc-eyebrow">Bakım Rutini</span><div class="disc-title">Kozmetik &amp; Güzellik</div><p class="disc-desc">Parfüm, makyaj ve cilt bakımı</p><span class="disc-cta">Keşfet →</span></div>
+        <div class="disc-content"><span class="disc-eyebrow">Özel Anlar</span><div class="disc-title">Davet &amp; Söz</div><span class="disc-cta">Keşfet →</span></div>
+      </a>
+      <a href="/koleksiyon/hafta-sonu" class="disc-card">
+        <img class="disc-bg" src="img/styles/style-haftasonu.jpg" alt="Hafta sonu, günlük şehir stili">
+        <span class="disc-accent" style="background:#2f80ed;"></span>
+        <div class="disc-content"><span class="disc-eyebrow">Casual</span><div class="disc-title">Hafta Sonu</div><span class="disc-cta">Keşfet →</span></div>
+      </a>
+      <a href="/koleksiyon/spor-active" class="disc-card">
+        <img class="disc-bg" src="img/styles/style-spor.jpg" alt="Spor ve aktif yaşam, activewear">
+        <span class="disc-accent" style="background:#3bb38f;"></span>
+        <div class="disc-content"><span class="disc-eyebrow">Activewear</span><div class="disc-title">Spor &amp; Active</div><span class="disc-cta">Keşfet →</span></div>
       </a>
     </div>
   </section>

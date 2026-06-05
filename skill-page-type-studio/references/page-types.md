@@ -40,15 +40,18 @@ Schema (if generating real page later): CollectionPage + BreadcrumbList + ItemLi
 3. **Per-category subcategory carousels**: one section per top category (Kadın → Elbise/Pantolon/…,
    Erkek, Çocuk, Ayakkabı, Spor & Outdoor, Ev & Yaşam, Parfüm & Kozmetik, Kampanyalar). Each = header
    (name + "Tümünü Gör") + horizontal scroll of **small subcategory cards** (image + label) with arrows.
-4. **Editorial "Keşfetmeye Devam Edin" cards** (4 **image-backed** cards) — homepage-style mizansen.
-   Make these **distinct "worlds"/lifestyle entry points** (e.g. Yeni Sezon Trendleri, Ev & Yaşam,
-   Spor & Outdoor, Kozmetik), **not** Çok Satanlar / Yeni / İndirimli — those already exist as the two
-   product carousels below, so duplicating them is a waste of a slot. Use a **real photo per card**
-   (`<img class="disc-bg" object-fit:cover>` matching the card's aspect — download at the same ratio,
-   e.g. 720×540 for 4/3, so there's zero distortion) + a bottom-to-top dark gradient (`::after`,
-   `rgba(17,22,30,0)→.86`) + `text-shadow` for legibility, a small blurred eyebrow pill, a one-line
-   desc (hide on mobile), and a thin per-world accent stripe. Avoid flat CSS gradients — they read as
-   placeholders.
+4. **Editorial "Keşfetmeye Devam Edin" cards** (4 **image-backed** cards) — reuse the brand's **own
+   hub editorial/collection block** (the homepage's "moment/occasion" cards), NOT new content invented
+   for the 404. Concretely: clone the hub's style-collection (e.g. Ofis Şıklığı / Davet & Söz / Hafta
+   Sonu / Spor & Active — eyebrow = the moment "İş Hayatı/Özel Anlar/Casual/Activewear", title, "Keşfet →").
+   Two anti-patterns to avoid: (a) **category names** (Kadın/Ev & Yaşam/Spor/Kozmetik) — those are
+   already the subcategory carousels above, so repeating them as cards is redundant; (b) **Çok Satanlar
+   / Yeni / İndirimli** — those are the two product carousels below. Occasion/lifestyle moments are the
+   only non-duplicating angle. Reuse the brand's collection imagery (it's portrait, usually **3/4** —
+   match the card `aspect-ratio` to the image, e.g. 3/4 ↔ 600×800, so `object-fit:cover` crops nothing).
+   Treatment: `<img class="disc-bg" object-fit:cover>` + bottom-to-top dark gradient (`::after`,
+   `rgba(17,22,30,0)→.86`) + `text-shadow`, a small blurred eyebrow pill, and a thin accent stripe.
+   Avoid flat CSS gradients — they read as placeholders.
 5. **Brand carousel** (arrows).
 6. **Two product carousels**: "En Çok Satanlar" + "En Yeni Ürünler".
 7. **Popular searches** chips.
