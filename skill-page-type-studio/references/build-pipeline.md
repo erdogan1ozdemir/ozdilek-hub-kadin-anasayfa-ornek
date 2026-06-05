@@ -57,6 +57,19 @@ CAT_DATA = [("Kadın","/kadin","kadin",["Elbise","Pantolon","Tişört","Gömlek"
 # cycle 3 images per category (img/subcat/<key>-1..3.jpg) across subcategories; build a .subcat-row per category.
 ```
 
+## Carousel arrows — always visible, inside the edges
+Shared `.carousel-nav` rule (do NOT gate behind a desktop-only media query, or the preview/tablet shows
+no buttons):
+```css
+.carousel-nav{position:absolute;top:40%;transform:translateY(-50%);width:38px;height:38px;background:#fff;
+  border:1px solid var(--light);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  z-index:5;font-size:18px;cursor:pointer;box-shadow:var(--sh-md);color:var(--text);}
+.carousel-nav-prev{left:4px;} .carousel-nav-next{right:4px;}     /* inside edges → no mobile overflow */
+@media (max-width:600px){.carousel-nav{width:32px;height:32px;font-size:15px;}}
+```
+Wrap each scroller in `.product-carousel-wrap` (position:relative) with the two buttons calling
+`scrollCarousel('<rowId>', -1|1)`.
+
 ## The PLP filter overlay bug (do NOT repeat)
 Symptom: filter accordion content spans the full width and overlaps the product grid on desktop.
 Cause: the mobile filter `.plp-filter-overlay` div placed as a **direct child of `.plp` grid** becomes

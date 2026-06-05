@@ -112,8 +112,10 @@ Component checklists per type are in [references/page-types.md](references/page-
 1. **Self-contained HTML** with base64-inlined images (preview reliability across environments).
 2. **Shared shell** reused across all pages (header/footer/tokens) for consistency + low effort.
 3. **Generic carousel scroller**: `scrollCarousel(id, dir)` uses `firstElementChild` width — works for
-   product rows, subcategory rows, brand rows alike. Add **arrow buttons** to every horizontal scroller
-   (visible on desktop, swipe on mobile).
+   product rows, subcategory rows, brand rows alike. Add **arrow buttons to every horizontal scroller**,
+   visible on **all sizes** and positioned just **inside** the row edges (`left/right: 4px`) so they
+   never overflow on mobile — swipe still works too. Do NOT hide arrows below a desktop breakpoint
+   (a common mistake: `display:none` until `min-width:1024px` leaves the preview/tablet without buttons).
 4. **PLP filter overlay must be `position: fixed`, never a direct grid child** — a static/flow overlay
    div becomes a 3rd grid item and breaks the `[sidebar | grid]` layout. The mobile filter is an
    off-canvas drawer toggled by a "Filtrele" button; desktop sidebar is `position: sticky`.
